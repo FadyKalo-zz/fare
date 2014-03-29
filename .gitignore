@@ -1,0 +1,10 @@
+# Byte-compiled / optimized / DLL files
+__pycachei__/
+*.pyc
+
+# IDEA stuff
+.idea
+
+# MAC stuff
+.DS_Store
+
