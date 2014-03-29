@@ -34,7 +34,10 @@
             </div>
             <div class="footer-container row">
                 <nav class="navbar navbar-default navbar-fixed-bottom">
-                    this is a footer
+                    <span class="copyright">All rights reserved, &copy; {% now 'Y' %}</span>
+                    <span class="footer-text">
+                        About | Help | Feedback
+                    </span>
                 </nav>
             </div>
         </div>
@@ -51,7 +54,6 @@
         <script src="{% static 'frameworks/flat-ui/js/flatui-radio.js' %}"></script>
         <script src="{% static 'frameworks/flat-ui/js/jquery.tagsinput.js' %}"></script>
         <script src="{% static 'frameworks/flat-ui/js/jquery.placeholder.js' %}"></script>
-
         {% block js_block %}{% endblock %}
     </body>
 </html>

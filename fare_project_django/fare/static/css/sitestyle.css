@@ -1,28 +1,34 @@
 .body-container {
     padding-top: 55px;
 }
-
 .navbar-inverse {
     background-color: #C0392B;
 }
-
 .img-overlay-label {
     position: absolute;
     bottom: 20px;
     left: 0px;
     padding: 3px 25px;
-    /*opacity: 0.8;opacity*/
+    opacity: 0.8;
     background-color: #C0392B;
 }
-
 .img-overlay-label .text {
     color: #FFF;
     opacity: 1;
 }
-
 .recipes_buttons {
     position: absolute;
     bottom: 0px;
     right: 15px;
     opacity: 0.8;
+}
+.footer-container .footer-text {
+    float: left;
+    margin-left: 10px;
+    font-size: 12px;
+}
+.footer-container .copyright {
+    float: right;
+    margin-right: 10px;
+    font-size: 12px;
 }
