@@ -54,6 +54,7 @@ def diets(request):
 	})
 	return HttpResponse(template.render(context))
 
+
 def diet(request, diet_id):
 	try:
 		diet = Diet.objects.get(pk=diet_id)
@@ -62,7 +63,25 @@ def diet(request, diet_id):
 	return render(request, 'dietapp/diet.html', {'diet': diet})
 
 # get_recipes --> view function where we have a second parameter ( i.e: breakfast, dinner, lunch) and we call the yummly Api.
-def get_recipes(request, meal): 
-        mealList = fetch_meals(meal)
-        return HttpResponse(json.dumps(mealList), content_type="application/json")
+def get_recipes(request, meal):
+	mealList = fetch_meals(meal)
+	return HttpResponse(json.dumps(mealList), content_type="application/json")
+
+
+def diets_v2(request):
+	diet_list = Diet.objects.order_by('name')[:5]
+	template = loader.get_template('dietapp/diets_v2.html')
+	context = RequestContext(request, {
+	'diet_list': diet_list,
+	})
+	return HttpResponse(template.render(context))
+
+
+def recipes_v2(request):
+	diet_list = Diet.objects.order_by('name')[:5]
+	template = loader.get_template('dietapp/recipes_v2.html')
+	context = RequestContext(request, {
+	'diet_list': diet_list,
+	})
+	return HttpResponse(template.render(context))
 
