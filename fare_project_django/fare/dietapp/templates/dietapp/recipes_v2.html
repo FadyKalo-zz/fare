@@ -20,10 +20,10 @@
                 </div>
             </div>
             <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <a class="left carousel-control" href="#carousel-breakfast" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <a class="right carousel-control" href="#carousel-breakfast" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>
@@ -47,10 +47,37 @@
                 </div>
             </div>
             <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <a class="left carousel-control" href="#carousel-lunch" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <a class="right carousel-control" href="#carousel-lunch" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="carousel-dinner" class="carousel slide" data-ride="carousel" data-meal-type="dinner">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-breakfast" data-slide-to="0" class="active"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="{% static 'img/diet.jpg' %}"/>
+
+                    <div class="carousel-caption img-overlay-label">
+                        <span class="text">Dinner</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-dinner" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-dinner" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>

@@ -18,7 +18,7 @@ function load_carousel(content, type) {
     $.each(content, function (k, v) {
         $('<div>', {class: 'item'})
         .append(
-            $('<img/>', {class: 'img-responsive', src: v})
+            $('<img/>', {class: 'img-responsive', src: v[0]})
         )
         .append(
             $('<div>', {class: 'carousel-caption img-overlay-label'})
@@ -33,5 +33,5 @@ $(document).ready(function () {
     $('div.carousel').each(function(index, element){
         var type = $(element).attr('data-meal-type');
         get_content(type);
-     });
+     }).carousel({interval:false});
 });

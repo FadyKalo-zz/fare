@@ -64,7 +64,8 @@ def diet(request, diet_id):
 
 # get_recipes --> view function where we have a second parameter ( i.e: breakfast, dinner, lunch) and we call the yummly Api.
 def get_recipes(request, meal):
-	mealList = fetch_meals(meal)
+	myDiet = request.GET.get('diet', '')
+	mealList = fetch_meals(meal, myDiet)
 	return HttpResponse(json.dumps(mealList), content_type="application/json")
 
 
