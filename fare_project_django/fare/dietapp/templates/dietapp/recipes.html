@@ -1,0 +1,9 @@
+{% if recipe_list %}
+    <ul>
+    {% for rec in recipe_list %}
+        <li><a href="{% url 'recipe' rec.id %}">{{ rec.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
