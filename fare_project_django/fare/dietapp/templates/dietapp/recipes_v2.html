@@ -1,14 +1,13 @@
 {% extends 'layouts/main.html' %}
 {% load static %}
+
 {%  block body_block %}
 <div class="row">
-
-
     <div class="col-xs-12">
-        <div id="carousel-breakfast" class="carousel slide" data-ride="carousel">
+        <div id="carousel-breakfast" class="carousel slide" data-ride="carousel" data-meal-type="breakfast">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-breakfast" data-slide-to="0" class="active"></li>
             </ol>
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
@@ -16,15 +15,7 @@
                     <img class="img-responsive" src="{% static 'img/diet.jpg' %}"/>
 
                     <div class="carousel-caption img-overlay-label">
-                        <span class="text">RECIPE_1</span>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img class="img-responsive" src="{% static 'img/diet.jpg' %}"/>
-
-                    <div class="carousel-caption img-overlay-label">
-                        <span class="text">RECIPE_2</span>
+                        <span class="text">Breakfast</span>
                     </div>
                 </div>
             </div>
@@ -37,8 +28,36 @@
             </a>
         </div>
     </div>
-
-
 </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="carousel-lunch" class="carousel slide" data-ride="carousel" data-meal-type="lunch">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-breakfast" data-slide-to="0" class="active"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="{% static 'img/diet.jpg' %}"/>
 
+                    <div class="carousel-caption img-overlay-label">
+                        <span class="text">Lunch</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_block %}
+<script src="{% static 'js/recipes_v2.js' %}"></script>
 {% endblock %}
