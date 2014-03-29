@@ -1,32 +1,56 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Food Fare</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'frameworks/flat-ui/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'frameworks/flat-ui/css/flat-ui.css' %}" rel="stylesheet">
-    <script src="{% static 'frameworks/flat-ui/js/html5shiv.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/respond.min.js' %}"></script>
-
-</head>
-<body>
-
-    {% block body_block %}{% endblock %}
-
-    <!-- Load JS here for greater good =============================-->
-    <script src="{% static 'frameworks/flat-ui/js/jquery-1.8.3.min.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/jquery-ui-1.10.3.custom.min.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/jquery.ui.touch-punch.min.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/bootstrap-select.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/bootstrap-switch.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/flatui-checkbox.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/flatui-radio.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/jquery.tagsinput.js' %}"></script>
-    <script src="{% static 'frameworks/flat-ui/js/jquery.placeholder.js' %}"></script>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Food Fare</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{% static 'frameworks/flat-ui/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'frameworks/flat-ui/css/flat-ui.css' %}" rel="stylesheet">
+        <link href="{% static 'css/sitestyle.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="menu-container row">
+                <nav class="navbar navbar-fixed-top navbar-inverse navbar-embossed" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-01">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                        <span class="navbar-brand" style="color: white;">Food Fare</span>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a href="#fakelink">My diets</a></li>
+                            <li><a href="#fakelink">About Us</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="body-container row">
+                {% block body_block %}{% endblock %}
+            </div>
+            <div class="footer-container row">
+                <nav class="navbar navbar-default navbar-fixed-bottom">
+                    this is a footer
+                </nav>
+            </div>
+        </div>
+        <!-- Load JS here for greater good =============================-->
+        <script src="{% static 'frameworks/flat-ui/js/html5shiv.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/respond.min.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/jquery-1.8.3.min.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/jquery.ui.touch-punch.min.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/bootstrap-select.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/bootstrap-switch.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/flatui-checkbox.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/flatui-radio.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/jquery.tagsinput.js' %}"></script>
+        <script src="{% static 'frameworks/flat-ui/js/jquery.placeholder.js' %}"></script>
+    </body>
 </html>
 
 
