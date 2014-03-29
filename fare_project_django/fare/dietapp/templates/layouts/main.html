@@ -8,6 +8,7 @@
         <link href="{% static 'frameworks/flat-ui/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
         <link href="{% static 'frameworks/flat-ui/css/flat-ui.css' %}" rel="stylesheet">
         <link href="{% static 'css/sitestyle.css' %}" rel="stylesheet">
+        {% block css_block %}{% endblock %}
     </head>
     <body>
         <div class="container">
@@ -50,6 +51,8 @@
         <script src="{% static 'frameworks/flat-ui/js/flatui-radio.js' %}"></script>
         <script src="{% static 'frameworks/flat-ui/js/jquery.tagsinput.js' %}"></script>
         <script src="{% static 'frameworks/flat-ui/js/jquery.placeholder.js' %}"></script>
+
+        {% block js_block %}{% endblock %}
     </body>
 </html>
 
