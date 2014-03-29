@@ -1,8 +1,12 @@
 from django.shortcuts import render
-
+from yummly import *
 from django.http import HttpResponse, Http404
 from django.template import RequestContext, loader
 from dietapp.models import Recipe, Diet
+import json
+from helpFunc import fetch_meals
+
+# here I import the json library. NOTE : Add it on the server ???
 
 # def index(request):
 #     # Obtain the context from the HTTP request.
@@ -56,3 +60,9 @@ def diet(request, diet_id):
 	except Recipe.DoesNotExist:
 		raise Http404
 	return render(request, 'dietapp/diet.html', {'diet': diet})
+
+# get_recipes --> view function where we have a second parameter ( i.e: breakfast, dinner, lunch) and we call the yummly Api.
+def get_recipes(request, meal): 
+        mealList = fetch_meals(meal)
+        return HttpResponse(json.dumps(mealList), content_type="application/json")
+

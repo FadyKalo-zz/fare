@@ -1,20 +1,21 @@
 {% extends 'layouts/main.html' %}
 {% load static %}
 {%  block body_block %}
-    {% if diet_list %}
-        <div class="row">
-            {% for diet in diet_list %}
-                <div class="col-xs-12">
-                    <a href="{% url 'diet' diet.id %}">
-                        <img class="img-responsive" src="{% static 'img/diet.jpg' %}" />
-                        <div class="img-overlay-label">
-                            <span class="text">{{ diet.name }}</span>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>No polls are available.</p>
-    {% endif %}
+{% if diet_list %}
+<div class="row">
+    {% for diet in diet_list %}
+    <div class="col-xs-12">
+        <a href="{% url 'diet' diet.id %}">
+            <img class="img-responsive" src="{% static 'img/diet.jpg' %}"/>
+
+            <div class="img-overlay-label">
+                <span class="text">{{ diet.name }}</span>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
 {% endblock %}

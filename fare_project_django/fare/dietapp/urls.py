@@ -9,5 +9,6 @@ urlpatterns = patterns('',
 	url(r'^diet/(?P<diet_id>\d+)/$', views.diet, name='diet'),
 
     url(r'^recipes/', views.recipes, name='recipes'),
-	url(r'^recipe/(?P<recipe_id>\d+)/$', views.recipe, name='recipe')
+	url(r'^recipe/(?P<recipe_id>\d+)/$', views.recipe, name='recipe'),
+    url(r'^recipe/(?P<meal>\w{5,10})/$', views.get_recipes, name = 'get_recipes'),
 )
