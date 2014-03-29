@@ -1,9 +1,11 @@
 .body-container {
     padding-top: 55px;
 }
+
 .navbar-inverse {
     background-color: #C0392B;
 }
+
 .img-overlay-label {
     position: absolute;
     bottom: 20px;
@@ -12,7 +14,15 @@
     /*opacity: 0.8;opacity*/
     background-color: #C0392B;
 }
+
 .img-overlay-label .text {
     color: #FFF;
     opacity: 1;
+}
+
+.recipes_buttons {
+    position: absolute;
+    bottom: 0px;
+    right: 15px;
+    opacity: 0.8;
 }
