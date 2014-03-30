@@ -5,37 +5,38 @@
 
 <div class='row'>
     <div class='col-md-offset-2 col-md-8'>
-        <div id="carousel-breakfast" class="carousel slide breakfast" data-ride="carousel" data-meal-type="breakfast">
+        <div id="carousel-breakfast" class="carousel slide breakfast" data-ride="carousel" data-meal-type="breakfast" data-diet="{{ diet }}">
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="row pad-top-20">
                         <div class="col-xs-4 text-center recipe_pix">
-                            <img class="img-circle" src="http://wp-desk.com/lovinflat/images/persons/person_1.png">
+                            <!--<img class="img-circle" src="http://wp-desk.com/lovinflat/images/persons/person_1.png">-->
+                            <img class="img-circle" src="">
                         </div>
                         <div class="col-xs-8 item-info">
-                            <div>Recipe Name</div>
-                            <span class="label">Soups</span>
-                            <span class="label">Main Dishes</span>
-                            <span class="label">Italian</span>
+                            <div>BREAKFAST</div>
+                            <!--<span class="label">Soups</span>-->
+                            <!--<span class="label">Main Dishes</span>-->
+                            <!--<span class="label">Italian</span>-->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="rating">
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <div class="btn-group btn-group-xs pull-right">
-                                <a class="btn btn-primary" href="#"><span class="fui-time"></span></a>
-                                <a class="btn btn-primary" href="#"><span class="fui-check"></span></a>
-                                <a class="btn btn-primary" href="#"><span class="fui-heart"></span></a>
-                                <a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>
-                            </div>
+                            <!--<div class="btn-group btn-group-xs pull-right">-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-time"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-check"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-heart"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -51,21 +52,21 @@
 </div>
 
 
-<div class="row">
-    <div class="col-xs-12">
-        <div id="carousel-lunch" class="carousel slide lunch" data-ride="carousel" data-meal-type="lunch">
-            <!-- Wrapper for slides -->
+<div class='row'>
+    <div class='col-md-offset-2 col-md-8'>
+        <div id="carousel-lunch" class="carousel slide lunch" data-ride="carousel" data-meal-type="lunch" data-diet="{{ diet }}">
             <div class="carousel-inner">
-                <div class="item active cover">
+                <div class="item active">
                     <div class="row pad-top-20">
                         <div class="col-xs-4 text-center recipe_pix">
                             <!--<img class="img-circle" src="http://wp-desk.com/lovinflat/images/persons/person_1.png">-->
+                            <img class="img-circle" src="">
                         </div>
                         <div class="col-xs-8 item-info">
-                            <p>Breakfast</p>
-                            <!--<span class="label label-warning">Soups</span>-->
-                            <!--<span class="label label-warning">Main Dishes</span>-->
-                            <!--<span class="label label-warning">Italian</span>-->
+                            <div>LUNCH</div>
+                            <!--<span class="label">Soups</span>-->
+                            <!--<span class="label">Main Dishes</span>-->
+                            <!--<span class="label">Italian</span>-->
                         </div>
                     </div>
                     <div class="row">
@@ -79,68 +80,117 @@
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <div class="btn-group btn-group-xs pull-right">
+                            <!--<div class="btn-group btn-group-xs pull-right">-->
                                 <!--<a class="btn btn-primary" href="#"><span class="fui-time"></span></a>-->
                                 <!--<a class="btn btn-primary" href="#"><span class="fui-check"></span></a>-->
                                 <!--<a class="btn btn-primary" href="#"><span class="fui-heart"></span></a>-->
                                 <!--<a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>-->
-                            </div>
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-lunch" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
+            <a data-slide="prev" href="#carousel-lunch" class="left carousel-control font-medium">
+                <i class="glyphicon glyphicon-chevron-left"></i>
             </a>
-            <a class="right carousel-control" href="#carousel-lunch" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <div id="carousel-snack" class="carousel slide snack" data-ride="carousel" data-meal-type="snack">
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img class="img-responsive" src="{% static 'img/diet.jpg' %}"/>
-
-                    <div class="carousel-caption img-overlay-label">
-                        <span class="text">Snack</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-snack" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-snack" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
+            <a data-slide="next" href="#carousel-lunch" class="right carousel-control font-medium">
+                <i class="glyphicon glyphicon-chevron-right"></i>
             </a>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12">
-        <div id="carousel-dinner" class="carousel slide dinner" data-ride="carousel" data-meal-type="dinner">
-            <!-- Wrapper for slides -->
+
+<div class='row'>
+    <div class='col-md-offset-2 col-md-8'>
+        <div id="carousel-snack" class="carousel slide snack" data-ride="carousel" data-meal-type="snack" data-diet="{{ diet }}">
             <div class="carousel-inner">
                 <div class="item active">
-                    <img class="img-responsive" src="{% static 'img/diet.jpg' %}"/>
-
-                    <div class="carousel-caption img-overlay-label">
-                        <span class="text">Dinner</span>
+                    <div class="row pad-top-20">
+                        <div class="col-xs-4 text-center recipe_pix">
+                            <!--<img class="img-circle" src="http://wp-desk.com/lovinflat/images/persons/person_1.png">-->
+                            <img class="img-circle" src="">
+                        </div>
+                        <div class="col-xs-8 item-info">
+                            <div>SNACK</div>
+                            <!--<span class="label">Soups</span>-->
+                            <!--<span class="label">Main Dishes</span>-->
+                            <!--<span class="label">Italian</span>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="rating">
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <!--<div class="btn-group btn-group-xs pull-right">-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-time"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-check"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-heart"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>-->
+                            <!--</div>-->
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-dinner" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
+            <a data-slide="prev" href="#carousel-snack" class="left carousel-control font-medium">
+                <i class="glyphicon glyphicon-chevron-left"></i>
             </a>
-            <a class="right carousel-control" href="#carousel-dinner" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
+            <a data-slide="next" href="#carousel-snack" class="right carousel-control font-medium">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-md-offset-2 col-md-8'>
+        <div id="carousel-dinner" class="carousel slide dinner" data-ride="carousel" data-meal-type="dinner" data-diet="{{ diet }}">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="row pad-top-20">
+                        <div class="col-xs-4 text-center recipe_pix">
+                            <!--<img class="img-circle" src="http://wp-desk.com/lovinflat/images/persons/person_1.png">-->
+                            <img class="img-circle" src="">
+                        </div>
+                        <div class="col-xs-8 item-info">
+                            <div>DINNER</div>
+                            <!--<span class="label">Soups</span>-->
+                            <!--<span class="label">Main Dishes</span>-->
+                            <!--<span class="label">Italian</span>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="rating">
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                                <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <!--<div class="btn-group btn-group-xs pull-right">-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-time"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-check"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-heart"></span></a>-->
+                                <!--<a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a data-slide="prev" href="#carousel-dinner" class="left carousel-control font-medium">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+            </a>
+            <a data-slide="next" href="#carousel-dinner" class="right carousel-control font-medium">
+                <i class="glyphicon glyphicon-chevron-right"></i>
             </a>
         </div>
     </div>
