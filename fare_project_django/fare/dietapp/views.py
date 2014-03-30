@@ -24,71 +24,77 @@ from helpFunc import fetch_meals, getRecipeInfo
 
 
 # def recipe(request):
-# 	recipe_list = Recipe.objects.order_by('name')[:5]
-# 	output = recipe_list
-# 	# output = ', '.join([p.ingredient_set.all() for p in recipe_list])
-# 	return HttpResponse(output)
+#     recipe_list = Recipe.objects.order_by('name')[:5]
+#     output = recipe_list
+#     # output = ', '.join([p.ingredient_set.all() for p in recipe_list])
+#     return HttpResponse(output)
 
 def recipes(request):
-	recipe_list = Recipe.objects.order_by('name')[:5]
-	template = 'dietapp/recipes.html'
-	context = {
-	'recipe_list': recipe_list,
-	}
-	return render(request, template, context)
+    recipe_list = Recipe.objects.order_by('name')[:5]
+    template = 'dietapp/recipes.html'
+    context = {
+        'recipe_list': recipe_list,
+    }
+    return render(request, template, context)
 
 
 def recipe(request, recipe_id):
-	try:
-		recipe = Recipe.objects.get(pk=recipe_id)
-	except Recipe.DoesNotExist:
-		raise Http404
-	return render(request, 'dietapp/recipe.html', {'recipe': recipe})
+    try:
+        recipe = Recipe.objects.get(pk=recipe_id)
+    except Recipe.DoesNotExist:
+        raise Http404
+    return render(request, 'dietapp/recipe.html', {'recipe': recipe})
 
 
 def diets(request):
-	diet_list = Diet.objects.order_by('name')[:5]
-	template = loader.get_template('dietapp/diets.html')
-	context = RequestContext(request, {
-	'diet_list': diet_list,
-	})
-	return HttpResponse(template.render(context))
+    diet_list = Diet.objects.order_by('name')[:5]
+    template = loader.get_template('dietapp/diets.html')
+    context = RequestContext(request, {
+        'diet_list': diet_list,
+    })
+    return HttpResponse(template.render(context))
 
 
 def diet(request, diet_id):
-	try:
-		diet = Diet.objects.get(pk=diet_id)
-	except Recipe.DoesNotExist:
-		raise Http404
-	return render(request, 'dietapp/diet.html', {'diet': diet})
+    try:
+        diet = Diet.objects.get(pk=diet_id)
+    except Recipe.DoesNotExist:
+        raise Http404
+    return render(request, 'dietapp/diet.html', {'diet': diet})
+
 
 # get_recipes --> view function where we have a second parameter ( i.e: breakfast, dinner, lunch) and we call the yummly Api.
 def get_recipes(request, meal):
-	myDiet = request.GET.get('diet', '')
-	mealList = fetch_meals(meal, myDiet)
-	return HttpResponse(json.dumps(mealList), content_type="application/json")
+    myDiet = request.GET.get('diet', '')
+    mealList = fetch_meals(meal, myDiet)
+    return HttpResponse(json.dumps(mealList), content_type="application/json")
 
 
 def diets_v2(request):
-	diet_list = Diet.objects.order_by('name')[:5]
-	template = loader.get_template('dietapp/diets_v2.html')
-	context = RequestContext(request, {
-	'diet_list': diet_list,
-	})
-	return HttpResponse(template.render(context))
+    diet_list = Diet.objects.order_by('name')[:5]
+    template = loader.get_template('dietapp/diets_v2.html')
+    context = RequestContext(request, {
+        'diet_list': diet_list,
+    })
+    return HttpResponse(template.render(context))
 
 
 def recipes_v2(request):
-	diet_list = Diet.objects.order_by('name')[:5]
-	template = loader.get_template('dietapp/recipes_v2.html')
-	context = RequestContext(request, {
-	'diet_list': diet_list,
-	})
-	return HttpResponse(template.render(context))
+    diet_list = Diet.objects.order_by('name')[:5]
+    template = loader.get_template('dietapp/recipes_v2.html')
+    context = RequestContext(request, {
+        'diet_list': diet_list,
+    })
+    return HttpResponse(template.render(context))
+
 
 def recipeInfo(request):
-	recipe_id=request.GET.get('recipe_id','')
-	# info is a list of 2 lists where the first list is Ingredients and the second is nutrition
-	info=getRecipeInfo(recipe_id) 
-	return HttpResponse(json.dumps(info), content_type="application/json")
+    recipe_id = request.GET.get('recipe_id', '')
+    if recipe_id != '':
+        # info is a list of 2 lists where the first list is Ingredients and the second is nutrition
+        info = getRecipeInfo(recipe_id)
+    else :
+        # handle errors
+        info = {'error': 'Recipe Id field is required!'}
+    return HttpResponse(json.dumps(info), content_type="application/json")
 

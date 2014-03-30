@@ -1,0 +1,101 @@
+.body-container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.recipe-img {
+    height: 112px;
+    width: 148px;
+}
+
+.breakfast .rating .glyphicon {
+    font-size: 18px;
+    color: #F1C40F;
+}
+
+.lunch .rating .glyphicon {
+    font-size: 18px;
+    color: #f39c12;
+}
+
+.snack .rating .glyphicon {
+    font-size: 18px;
+    color: #e67e22;
+}
+
+.dinner .rating .glyphicon {
+    font-size: 18px;
+    color: #d35400;
+}
+
+.breakfast .btn-group .btn-primary,
+.breakfast .item-info .label {
+    background-color: #F1C40F;
+}
+
+.lunch .btn-group .btn-primary,
+.lunch .item-info .label {
+    background-color: #f39c12;
+}
+
+.snack .btn-group .btn-primary,
+.snack .item-info .label {
+    background-color: #e67e22;
+}
+
+.dinner .btn-group .btn-primary,
+.dinner .item-info .label {
+    background-color: #d35400;
+}
+
+.lunch {
+    background-color: #f39c12;
+}
+
+.breakfast .btn-primary:hover,
+.breakfast .btn-primary:focus,
+.breakfast .btn-primary:active,
+.breakfast .btn-primary.active,
+.breakfast .open,
+.breakfast .dropdown-toggle.btn-primary {
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
+.lunch .btn-primary:hover,
+.lunch .btn-primary:focus,
+.lunch .btn-primary:active,
+.lunch .btn-primary.active,
+.lunch .open,
+.lunch .dropdown-toggle.btn-primary {
+    background-color: #e67e22;
+    border-color: #e67e22;
+}
+
+.snack .btn-primary:hover,
+.snack .btn-primary:focus,
+.snack .btn-primary:active,
+.snack .btn-primary.active,
+.snack .open,
+.snack .dropdown-toggle.btn-primary {
+    background-color: #d35400;
+    border-color: #d35400;
+}
+
+.dinner .btn-primary:hover,
+.dinner .btn-primary:focus,
+.dinner .btn-primary:active,
+.dinner .btn-primary.active,
+.dinner .open,
+.dinner .dropdown-toggle.btn-primary {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.recipe .btn-group {
+    padding-right: 20px;
+
+}
+
+.time-value {
+    padding-left: 5px;
+}

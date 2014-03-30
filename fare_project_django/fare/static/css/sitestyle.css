@@ -39,6 +39,14 @@ body {
     padding-top: 20px;
 }
 
+.pad-left-25 {
+    padding-left: 25px;
+}
+
+.pad-left-30 {
+    padding-left: 30px;
+}
+
 .body-container {
     padding: 55px 0;
 }
