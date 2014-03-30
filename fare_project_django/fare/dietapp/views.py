@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 from django.template import RequestContext, loader
 from dietapp.models import Recipe, Diet
 import json
-from helpFunc import fetch_meals
+from helpFunc import fetch_meals, getRecipeInfo
 
 # here I import the json library. NOTE : Add it on the server ???
 
@@ -85,4 +85,9 @@ def recipes_v2(request):
 	'diet_list': diet_list,
 	})
 	return HttpResponse(template.render(context))
+
+def recipeInfo(request):
+	recipe_id=request.GET.get('recipe_id','')
+	info=getRecipeInfo(recipe_id)
+	return HttpResponse(json.dumps(info), content_type="application/json")
 

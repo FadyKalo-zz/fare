@@ -18,7 +18,10 @@ def fetch_meals(mealtype,Diet):
         params = insertParam(mealtype, Diet, DietsSpecifics, StdParams)
         results = client.search(**params)
         for match in results.matches:
-            meals[match.recipeName] = match.smallImageUrls
+            print " match id: ", match.id
+            meals[match.recipeName] = [match.smallImageUrls, match.id]
+            #print "------------------------------"
+            #print 'id is ', match.id"""
         return meals
 
 # given a diet e.g: 'Veggie' as a parameter and the Specifics of each diet this function adds the dietSpecific parameter to the generic ones
@@ -34,12 +37,31 @@ def insertParam(mealType, diet, Specifics, aDict):
     return aDict
 
 
+def getRecipeInfo(recipe_id):
+    TIMEOUT = 5.0
+    RETRIES = 0
+    client = Client(api_id='f679e06d', api_key='b7d0fb2f961db4832b468523283d5bc0', timeout=TIMEOUT, retries=RETRIES)
+    recipeInfo=client.recipe(recipe_id)
+    ingredients=recipeInfo.ingredientLines
+    nutrition=recipeInfo.nutritionEstimates
+    infos=[ingredients,nutrition]
+    """print " nutrition facts: ", recipeInfo.nutritionEstimates
+    for ingred in recipeInfo.ingredientLines:
+        print ' ingredient: ', ingred
+    """
 
-# def main():
-#     results1 = fetch_meals('breakfast', Diet)
-#     for k in results1:
-#         print k
-#
-#
-# if __name__ == '__main__':
-#     main()
+    return infos
+
+
+
+
+
+
+def main():
+    #results1 = fetch_meals('breakfast', Diet)
+    getRecipeInfo('Pomegranate-Breakfast-Soda-Food-Network')
+
+
+
+if __name__ == '__main__':
+     main()
