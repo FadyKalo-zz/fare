@@ -19,7 +19,9 @@ def fetch_meals(mealtype,Diet):
         results = client.search(**params)
         # associate the image url and recipe id with the recipe name
         for match in results.matches:
-            meals[match.recipeName] = [match.smallImageUrls, match.id]
+            print match.smallImageUrls, match.id, match.totalTimeInSeconds, match.rating, match.attributes
+            meals[match.recipeName] = [match.smallImageUrls, match.id, match.totalTimeInSeconds, match.rating, match.attributes]
+
         return meals
 
 # given a diet e.g: 'Veggie' as a parameter and the Specifics of each diet this function adds the dietSpecific parameter to the generic ones
@@ -57,8 +59,8 @@ def getRecipeInfo(recipe_id):
 
 
 def main():
-    #results1 = fetch_meals('breakfast', Diet)
-    getRecipeInfo('Pomegranate-Breakfast-Soda-Food-Network')
+    results1 = fetch_meals('breakfast', Diet)
+    #getRecipeInfo('Pomegranate-Breakfast-Soda-Food-Network')
 
 
 
