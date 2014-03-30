@@ -79,10 +79,11 @@ def diets_v2(request):
 
 
 def recipes_v2(request):
-	diet_list = Diet.objects.order_by('name')[:5]
+	# diet_list = Diet.objects.order_by('name')[:5]
 	template = loader.get_template('dietapp/recipes_v2.html')
+	diet=request.GET.get('diet','')
 	context = RequestContext(request, {
-	'diet_list': diet_list,
+	'diet': diet
 	})
 	return HttpResponse(template.render(context))
 
