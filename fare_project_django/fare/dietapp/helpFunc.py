@@ -10,18 +10,16 @@ def fetch_meals(mealtype,Diet):
 
         # dictionary for storing the results from the yummly api.
         meals = {}
-
+        # connect to the API
         client = Client(api_id='f679e06d', api_key='b7d0fb2f961db4832b468523283d5bc0', timeout=TIMEOUT, retries=RETRIES)
-        #search = client.search('breakfast') 
-        #match = search.matches[0]
+
         # TODO: parameters = get_parameters(Diet)
         params = insertParam(mealtype, Diet, DietsSpecifics, StdParams)
+        # execute the search with the selected list of parameters
         results = client.search(**params)
+        # associate the image url and recipe id with the recipe name
         for match in results.matches:
-            print " match id: ", match.id
             meals[match.recipeName] = [match.smallImageUrls, match.id]
-            #print "------------------------------"
-            #print 'id is ', match.id"""
         return meals
 
 # given a diet e.g: 'Veggie' as a parameter and the Specifics of each diet this function adds the dietSpecific parameter to the generic ones
@@ -33,7 +31,6 @@ def insertParam(mealType, diet, Specifics, aDict):
     for key,value in Specifics.items():
         if key == diet:
             aDict.update({value[0]:value[1]})
-            print "This is the " + diet +"'s parameters", aDict
     return aDict
 
 
@@ -41,14 +38,16 @@ def getRecipeInfo(recipe_id):
     TIMEOUT = 5.0
     RETRIES = 0
     client = Client(api_id='f679e06d', api_key='b7d0fb2f961db4832b468523283d5bc0', timeout=TIMEOUT, retries=RETRIES)
-    recipeInfo=client.recipe(recipe_id)
+    # the recipe function returns a recipe object
+    recipeInfo=client.recipe(recipe_id) 
+
+    # get the IngredientLines attribute (a list) from the recipe object
     ingredients=recipeInfo.ingredientLines
+
+    # get the nutritionEstimates attibute ( a list) 
     nutrition=recipeInfo.nutritionEstimates
+    
     infos=[ingredients,nutrition]
-    """print " nutrition facts: ", recipeInfo.nutritionEstimates
-    for ingred in recipeInfo.ingredientLines:
-        print ' ingredient: ', ingred
-    """
 
     return infos
 
