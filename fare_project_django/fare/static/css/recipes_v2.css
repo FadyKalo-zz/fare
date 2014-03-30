@@ -65,7 +65,8 @@
 
 .carousel img {
     width: 100px;
-    /*height: 100px*/
+    height: 100px;
+    /*padding-left: 10px;*/
 }
 
 /* End carousel */
@@ -80,11 +81,11 @@
 }
 
 .carousel .recipe_pix {
-    padding-left: 30px;
+    padding-left: 40px;
 }
 
 .carousel .rating {
-    padding-left: 10px;
+    padding-left: 30px;
 }
 
 .breakfast .rating .glyphicon {
