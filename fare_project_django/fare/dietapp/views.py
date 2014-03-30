@@ -88,6 +88,7 @@ def recipes_v2(request):
 
 def recipeInfo(request):
 	recipe_id=request.GET.get('recipe_id','')
-	info=getRecipeInfo(recipe_id)
+	# info is a list of 2 lists where the first list is Ingredients and the second is nutrition
+	info=getRecipeInfo(recipe_id) 
 	return HttpResponse(json.dumps(info), content_type="application/json")
 
