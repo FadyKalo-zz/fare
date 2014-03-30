@@ -1,39 +1,52 @@
 @font-face {
-  font-family: "Raleway";
-  src: url('fonts/raleway/raleway-normal.otf');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Raleway";
+    src: url('fonts/raleway/raleway-normal.otf');
+    font-weight: normal;
+    font-style: normal;
 }
+
 @font-face {
-  font-family: "Raleway";
-  src: url('fonts/raleway/raleway-bold.otf');
-  font-weight: bold;
-  font-style: normal;
+    font-family: "Raleway";
+    src: url('fonts/raleway/raleway-bold.otf');
+    font-weight: bold;
+    font-style: normal;
 }
+
 @font-face {
-  font-family: "Raleway";
-  src: url('fonts/raleway/raleway-bolder.otf');
-  font-weight: bolder;
-  font-style: normal;
+    font-family: "Raleway";
+    src: url('fonts/raleway/raleway-bolder.otf');
+    font-weight: bolder;
+    font-style: normal;
 }
+
 body {
     font-family: 'Raleway', Helvetica, sans-serif;
 }
+
 .font-large {
     font-size: 32px;
 }
+
 .font-medium {
     font-size: 18px;
 }
+
 .font-small {
     font-size: 12px;
 }
+
+.pad-top-20 {
+    padding-top: 20px;
+}
+
 .body-container {
     padding: 55px 0;
 }
+
 .navbar-inverse {
     /*background-color: #C0392B;*/
 }
+
 .img-overlay-label {
     position: absolute;
     bottom: 20px;
@@ -42,21 +55,25 @@ body {
     opacity: 0.8;
     background-color: #1ABC9C;
 }
+
 .img-overlay-label .text {
     color: #FFF;
     opacity: 1;
 }
+
 .recipes_buttons {
     position: absolute;
     bottom: 0px;
     right: 15px;
     opacity: 0.8;
 }
+
 .footer-container .footer-text {
     float: left;
     margin-left: 10px;
     font-size: 12px;
 }
+
 .footer-container .copyright {
     float: right;
     margin-right: 10px;

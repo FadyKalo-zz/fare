@@ -1,0 +1,174 @@
+.carousel nav {
+    float: right;
+    text-align: center;
+}
+
+.carousel nav a {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 2.0em;
+    height: 2.0em;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 0.1em;
+    border: 2px solid #47a3da;
+    line-height: 30px;
+    padding-left: 5px;
+}
+
+.carousel nav a:hover {
+    color: #fff;
+    background-color: #47a3da;
+}
+
+.carousel nav .gliph-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #47a3da;
+}
+
+/*------------------------------------------*/
+/* carousel */
+.carousel {
+    padding: 0 10px 15px 10px;
+    margin-top: 30px 0px 0px;
+    border-bottom: 2px solid #BDC3C7;
+    background-color: #ECF0F1;
+
+}
+
+/* Control buttons  */
+.carousel  .carousel-control {
+    background: none;
+    color: #222;
+    /*font-size: 2.3em;*/
+    text-shadow: none;
+    margin-top: 30px;
+
+}
+
+/* Previous button  */
+.carousel  .carousel-control.left {
+    left: -25px;
+    top: -50px;
+}
+
+/* Next button  */
+.carousel  .carousel-control.right {
+    right: -25px !important;
+    top: -50px;
+}
+
+.carousel img {
+    width: 100px;
+    /*height: 100px*/
+}
+
+/* End carousel */
+
+.item blockquote {
+    border-left: none;
+    margin: 0;
+}
+
+.item blockquote img {
+    margin-bottom: 10px;
+}
+
+.carousel .recipe_pix {
+    padding-left: 30px;
+}
+
+.carousel .rating {
+    padding-left: 10px;
+}
+
+.breakfast .rating .glyphicon {
+    font-size: 18px;
+    color: #F1C40F;
+}
+
+.lunch .rating .glyphicon {
+    font-size: 18px;
+    color: #f39c12;
+}
+
+.snack .rating .glyphicon {
+    font-size: 18px;
+    color: #e67e22;
+}
+
+.dinner .rating .glyphicon {
+    font-size: 18px;
+    color: #d35400;
+}
+
+.breakfast .btn-group .btn-primary,
+.breakfast .item-info .label{
+    background-color: #F1C40F;
+}
+
+.lunch .btn-group .btn-primary,
+.lunch .item-info .label{
+    background-color: #f39c12;
+}
+
+.snack .btn-group .btn-primary,
+.snack .item-info .label{
+    background-color: #e67e22;
+}
+
+.dinner .btn-group .btn-primary,
+.dinner .item-info .label{
+    background-color: #d35400;
+}
+
+.carousel .lunch{
+    background-color: #f39c12;
+}
+
+.breakfast .btn-primary:hover,
+.breakfast .btn-primary:focus,
+.breakfast .btn-primary:active,
+.breakfast .btn-primary.active,
+.breakfast .open,
+.breakfast .dropdown-toggle.btn-primary{
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+.lunch .btn-primary:hover,
+.lunch .btn-primary:focus,
+.lunch .btn-primary:active,
+.lunch .btn-primary.active,
+.lunch .open,
+.lunch .dropdown-toggle.btn-primary{
+    background-color: #e67e22;
+    border-color: #e67e22;
+}
+.snack .btn-primary:hover,
+.snack .btn-primary:focus,
+.snack .btn-primary:active,
+.snack .btn-primary.active,
+.snack .open,
+.snack .dropdown-toggle.btn-primary{
+    background-color: #d35400;
+    border-color: #d35400;
+}
+.dinner .btn-primary:hover,
+.dinner .btn-primary:focus,
+.dinner .btn-primary:active,
+.dinner .btn-primary.active,
+.dinner .open,
+.dinner .dropdown-toggle.btn-primary{
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.carousel .btn-group {
+    padding-right: 20px;
+
+}
