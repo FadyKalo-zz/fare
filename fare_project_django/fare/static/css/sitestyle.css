@@ -1,3 +1,33 @@
+@font-face {
+  font-family: "Raleway";
+  src: url('fonts/raleway/raleway-normal.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url('fonts/raleway/raleway-bold.otf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url('fonts/raleway/raleway-bolder.otf');
+  font-weight: bolder;
+  font-style: normal;
+}
+body {
+    font-family: 'Raleway', Helvetica, sans-serif;
+}
+.font-large {
+    font-size: 32px;
+}
+.font-medium {
+    font-size: 18px;
+}
+.font-small {
+    font-size: 12px;
+}
 .body-container {
     padding-top: 55px;
 }
