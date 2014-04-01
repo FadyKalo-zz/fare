@@ -5,18 +5,16 @@
         <div class='col-xs-12'>
             <div class="row pad-top-20">
                 <div class="col-xs-4 pad-left-25">
-                    <img class="img-circle recipe-img" src="http://i2.yummly.com/Hot-Turkey-Salad-Sandwiches-Allrecipes.l.png">
+                    <img class="img-circle recipe-img" src="{{ images }}">
                 </div>
                 <div class="col-xs-8 pad-left-30">
                     <div class="recipe-name">
-                        <h4>Hot Turkey Salad Sandwiches</h4>
+                        <h4>{{ name }}</h4>
                     </div>
                     <div class="recipe-labels">
-                        <span class="label label-warning">Christmas</span>
-                        <span class="label label-warning">Thanksgiving</span>
-                        <span class="label label-warning">Italian</span>
-                        <span class="label label-warning">Soul Food</span>
-                        <span class="label label-warning">American</span>
+                        {% for att in attributes %}
+                                <span class="label label-warning">{{ att }}</span>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -34,11 +32,11 @@
                     <div class="btn-group btn-group-xs pull-right">
                         <a class="btn btn-primary" href="#">
                             <span class="fui-time"></span>
-                            <span class="time-value">30 Min</span>
+                            <span class="time-value">{{ time }}</span>
                         </a>
                         <a class="btn btn-primary" href="#"><span class="fui-check"></span></a>
                         <a class="btn btn-primary" href="#"><span class="fui-heart"></span></a>
-                        <a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>
+{#                        <a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>#}
                     </div>
                 </div>
             </div>
@@ -48,101 +46,42 @@
         <div class="col-xs-12">
             <h4>Ingredients</h4>
             <ul>
-                <li>2 cups diced cooked turkey</li>
-                <li>2 celery ribs, diced</li>
-                <li>1 small onion, diced</li>
-                <li>2 hard-cooked eggs, chopped</li>
-                <li>3/4 cup mayonnaise</li>
-                <li>1/2 teaspoon salt</li>
-                <li>1/4 teaspoon pepper</li>
-                <li>6 hamburger buns, split</li>
+                {% for ingr in ingredients %}
+                    <li>{{ ingr }}</li>
+                {% endfor %}
             </ul>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
             <h4>Flavours</h4>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="progress-label">
-                        Salty
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 4.261637106537819%;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="progress-label">
-                        Meaty
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 1.9220244139432907%;"></div>
+            {% for flav,value in flavors.items %}
+
+                {{ flav }} : {{ value }}
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="progress-label">
+                            {{ flav }}
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {{ value}}%;"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="progress-label">
-                        Piquant
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 0%;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="progress-label">
-                        Bitter
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 6.931612268090248%;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="progress-label">
-                        Sour
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 9.972159750759602%;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="progress-label">
-                        Sweet
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 3.2512755133211613%;"></div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
             <h4>Nutrition Facts</h4>
-            <div class="row">
-                <div class="col-xs-6">Energy</div>
-                <div class="col-xs-3">318 kcal</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">Fatty acids, total saturated</div>
-                <div class="col-xs-3">2.7 g</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">Total lipid (fat)</div>
-                <div class="col-xs-3">13.97 g</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">Cholesterol</div>
-                <div class="col-xs-3">0.11 grams</div>
-            </div>
+            {% for el in nutrition %}
+                <div class="row">
+                    <div class="col-xs-6">{{ el.description }}</div>
+                    <div class="col-xs-3">{{ el.value }} {{ el.unit }}</div>
+                </div>
+            {% endfor %}
+
         </div>
     </div>
 {% endblock %}

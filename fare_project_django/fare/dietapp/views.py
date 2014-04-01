@@ -8,7 +8,8 @@ from django.contrib.auth import logout
 
 from yummly import *
 import json
-from helpFunc import fetch_meals, getRecipeInfo
+import helpFunc as hf
+# from helpFunc import fetch_meals, getRecipeInfo
 
 # needed in the register() view
 from dietapp.forms import UserForm, UserProfileForm
@@ -23,12 +24,61 @@ def recipes(request):
 	return render(request, template, context)
 
 
-def recipe(request, recipe_id):
+def recipe_old(request, recipe_id):
 	try:
 		recipe = Recipe.objects.get(pk=recipe_id)
 	except Recipe.DoesNotExist:
 		raise Http404
 	return render(request, 'dietapp/recipe.html', {'recipe': recipe})
+
+
+def recipe(request):
+	recipe_id = request.GET.get('recipe_id', '')
+
+	try:
+		recipe_details = hf.get_full_recipe_info(recipe_id)
+		# info = hf.getRecipeInfo(recipe_id)
+
+
+		attributes_of_interest = ["PROCNT", "FAT_KCAL", "FAPU", "CHOCDF","ENERC_KJ"]
+		nutrition_elements = recipe_details["nutritionEstimates"]
+		images=recipe_details["images"]
+		nutrition_arr,images_arr,attr_arr = [],[],[]
+
+		for k,v in recipe_details["attributes"].items():
+			attr_arr +=v
+
+
+		for x,v in images[0].items():
+			images_arr.append(v)
+		# print images_arr
+
+		for x in nutrition_elements:
+			dic = {}
+			if x["attribute"] in attributes_of_interest:
+				dic["description"] = x["description"]
+				dic["value"] = x["value"]
+				unit = x["unit"]
+				dic["unit"] = unit["abbreviation"]
+				nutrition_arr.append(dic)
+
+		context = {"name": recipe_details["name"],
+
+		   "attributes": attr_arr,
+		   "time": recipe_details["totalTime"],
+		   "ingredients": recipe_details["ingredientLines"],
+		   "flavors": recipe_details["flavors"].update(
+			   (x, y * 100) for x, y in recipe_details["flavors"].items()),
+		   "nutrition": nutrition_arr,
+		   # passing just the first picture here, can be improved
+		   "images":images_arr[0]
+		}
+		print context["attributes"]
+
+	except Recipe.DoesNotExist:
+		raise Http404
+
+	return render(request, 'dietapp/recipe.html', context)
 
 
 def diets(request):
@@ -48,14 +98,6 @@ def diet(request, diet_id):
 	return render(request, 'dietapp/diet.html', {'diet': diet})
 
 
-# get_recipes --> view function where we have a second parameter ( i.e: breakfast, dinner, lunch) and we call the yummly Api.
-@login_required
-def get_recipes(request, meal):
-	myDiet = request.GET.get('diet', '')
-	mealList = fetch_meals(meal, myDiet)
-	return HttpResponse(json.dumps(mealList), content_type="application/json")
-
-
 @login_required
 def diets_v2(request):
 	diet_list = Diet.objects.order_by('name')[:5]
@@ -68,12 +110,26 @@ def diets_v2(request):
 
 @login_required
 def recipes_v2(request):
-	diet_list = Diet.objects.order_by('name')[:5]
+	# diet_list = Diet.objects.order_by('name')[:5]
 	template = loader.get_template('dietapp/recipes_v2.html')
 	context = RequestContext(request, {
-	'diet_list': diet_list,
+	# 'recipes': diet_list,
 	})
 	return HttpResponse(template.render(context))
+
+
+@login_required
+def get_recipes(request, meal):
+	"""
+	view function where we have a second parameter ( i.e: breakfast, dinner, lunch) and we call the yummly Api.
+
+	:param request:
+	:param meal:
+	:return:
+	"""
+	myDiet = request.GET.get('diet', '')
+	mealList = hf.fetch_meals(meal, myDiet)
+	return HttpResponse(json.dumps(mealList), content_type="application/json")
 
 
 @login_required
@@ -81,7 +137,7 @@ def recipeInfo(request):
 	recipe_id = request.GET.get('recipe_id', '')
 	if recipe_id != '':
 		# info is a list of 2 lists where the first list is Ingredients and the second is nutrition
-		info = getRecipeInfo(recipe_id)
+		info = hf.getRecipeInfo(recipe_id)
 	else:
 		# handle errors
 		info = {'error': 'Recipe Id field is required!'}

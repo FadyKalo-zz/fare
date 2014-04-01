@@ -1,32 +1,29 @@
 {% extends 'layouts/main.html' %}
 {% load static %}
 {% block body_block %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12"><h3>Login to Dietapp</h3></div>
-            <div class="col-xs-12">
-                <form id="login_form" method="post" action="/dietapp/login/" role="form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="uname">Username</label>
-                        <input type="text" class="form-control" id="uname" placeholder="Username" name="username"
-                               value=""
-                               size="50">
-                    </div>
-                    {#        Password: <input type="password" name="password" value="" size="50"/>#}
-                    {#        <br/>#}
-                    <div class="form-group">
-                        <label for="pwd">Password</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Password" name="password"
-                               value=""
-                               size="50">
-                    </div>
-                    {#            <input type="submit" value="submit" />#}
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" style="">Submit</button>
-                    </div>
-                </form>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12"><h3>Login to Dietapp</h3></div>
+        <div class="col-xs-12">
+            <form id="login_form" method="post" action="/dietapp/login/" role="form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="uname">Username</label>
+                    <input type="text" class="form-control" id="uname" placeholder="Username" name="username"
+                           value=""
+                           size="50">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Password" name="password"
+                           value=""
+                           size="50">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 {% endblock %}

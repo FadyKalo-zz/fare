@@ -12,6 +12,7 @@ function get_content(type, diet) {
 }
 
 function load_carousel(content, type) {
+    console.log(content);
     var carousel = $("#carousel-" + type).find('.carousel-inner');
 //    var listIndicators = $("#carousel-" + type + " ol.carousel-indicators");
     var i = 1;
@@ -44,7 +45,7 @@ function load_carousel(content, type) {
                     $('<a>',{class:"btn btn-primary",href :'#' }).append(
                         $('<span>',{class:'fui-heart'}))
                 ).append(
-                    $('<a>',{class:"btn btn-primary",href :'#' }).append(
+                    $('<a>',{class:"btn btn-primary",href :'../recipe/?recipe_id='+v[1] }).append(
                         $('<span>',{class:'fui-eye'}))
                 )
 
