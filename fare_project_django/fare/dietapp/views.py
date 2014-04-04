@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext, loader
-from dietapp.models import Recipe, Diet
 from django.contrib.auth import logout
 
 from yummly import *
@@ -13,24 +12,6 @@ import helpFunc as hf
 
 # needed in the register() view
 from dietapp.forms import UserForm, UserProfileForm
-
-
-def recipes(request):
-	recipe_list = Recipe.objects.order_by('name')[:5]
-	template = 'dietapp/recipes.html'
-	context = {
-	'recipe_list': recipe_list,
-	}
-	return render(request, template, context)
-
-
-def recipe_old(request, recipe_id):
-	try:
-		recipe = Recipe.objects.get(pk=recipe_id)
-	except Recipe.DoesNotExist:
-		raise Http404
-	return render(request, 'dietapp/recipe.html', {'recipe': recipe})
-
 
 def recipe(request):
 	recipe_id = request.GET.get('recipe_id', '')
@@ -80,40 +61,17 @@ def recipe(request):
 	return render(request, 'dietapp/recipe.html', context)
 
 
-def diets(request):
-	diet_list = Diet.objects.order_by('name')[:5]
-	template = loader.get_template('dietapp/diets.html')
-	context = RequestContext(request, {
-	'diet_list': diet_list,
-	})
-	return HttpResponse(template.render(context))
-
-
-def diet(request, diet_id):
-	try:
-		diet = Diet.objects.get(pk=diet_id)
-	except Recipe.DoesNotExist:
-		raise Http404
-	return render(request, 'dietapp/diet.html', {'diet': diet})
-
-
 @login_required
 def diets_v2(request):
-	diet_list = Diet.objects.order_by('name')[:5]
 	template = loader.get_template('dietapp/diets_v2.html')
-	context = RequestContext(request, {
-	'diet_list': diet_list,
-	})
+	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
 
 
 @login_required
 def recipes_v2(request):
-	# diet_list = Diet.objects.order_by('name')[:5]
 	template = loader.get_template('dietapp/recipes_v2.html')
-	context = RequestContext(request, {
-	# 'recipes': diet_list,
-	})
+	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
 
 
