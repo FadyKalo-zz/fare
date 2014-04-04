@@ -39,7 +39,6 @@ def recipe(request):
 		recipe_details = hf.get_full_recipe_info(recipe_id)
 		# info = hf.getRecipeInfo(recipe_id)
 
-
 		attributes_of_interest = ["PROCNT", "FAT_KCAL", "FAPU", "CHOCDF","ENERC_KJ"]
 		nutrition_elements = recipe_details["nutritionEstimates"]
 		images=recipe_details["images"]
