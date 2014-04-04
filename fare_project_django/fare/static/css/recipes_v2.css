@@ -71,7 +71,7 @@
 
 
 .meals-hero {
-    min-height: 150px;
+    min-height: 167px;
     color: #ECF0F1;
 }
 
@@ -110,26 +110,42 @@
 }
 
 .carousel .rating {
-    padding-left: 30px;
+    padding: 5px 12px 0 12px;
+}
+
+.breakfast .item {
+    border-bottom: 1px solid #F1C40F;
+}
+
+.lunch .item {
+    border-bottom: 1px solid #f39c12;
+}
+
+.snack .item {
+    border-bottom: 1px solid #e67e22;
+}
+
+.dinner .item {
+    border-bottom: 1px solid #d35400;
 }
 
 .breakfast .rating .glyphicon {
-    font-size: 18px;
+    font-size: 24px;
     color: #F1C40F;
 }
 
 .lunch .rating .glyphicon {
-    font-size: 18px;
+    font-size: 24px;
     color: #f39c12;
 }
 
 .snack .rating .glyphicon {
-    font-size: 18px;
+    font-size: 24px;
     color: #e67e22;
 }
 
 .dinner .rating .glyphicon {
-    font-size: 18px;
+    font-size: 24px;
     color: #d35400;
 }
 
@@ -195,6 +211,6 @@
 }
 
 .carousel .btn-group {
-    padding-right: 20px;
+    padding: 0 15px 10px 0;
 
 }
