@@ -71,7 +71,10 @@ def diets_v2(request):
 @login_required
 def recipes_v2(request):
 	template = loader.get_template('dietapp/recipes_v2.html')
-	context = RequestContext(request, {})
+	diet=request.GET.get('diet','')
+	context = RequestContext(request, {
+		'diet':diet
+	})
 	return HttpResponse(template.render(context))
 
 
@@ -102,6 +105,8 @@ def recipeInfo(request):
 
 
 def register(request):
+	fav_color = request.session["fav_color"]
+	print fav_color
 	# Like before, get the request's context.
 	context = RequestContext(request)
 
@@ -161,28 +166,28 @@ def register(request):
 
 
 def user_login(request):
-	# Like before, obtain the context for the user's request.
+
+	# Set a session value:
+	request.session["fav_color"] = "blue"
+
+	# Obtain the context for the user's request.
 	context = RequestContext(request)
 
 	# If the request is a HTTP POST, try to pull out the relevant information.
 	if request.method == 'POST':
-		# Gather the username and password provided by the user.
 		# This information is obtained from the login form.
 		username = request.POST['username']
 		password = request.POST['password']
 
-		# Use Django's machinery to attempt to see if the username/password
-		# combination is valid - a User object is returned if it is.
+		# To see if the username/password combination is valid
 		user = authenticate(username=username, password=password)
 
 		# If we have a User object, the details are correct.
-		# If None (Python's way of representing the absence of a value), no user
-		# with matching credentials was found.
 		if user is not None:
 			# Is the account active? It could have been disabled.
 			if user.is_active:
 				# If the account is valid and active, we can log the user in.
-				# We'll send the user back to the homepage.
+				# Send the user back to the homepage.
 				login(request, user)
 				return HttpResponseRedirect('/dietapp/')
 			else:
@@ -194,17 +199,21 @@ def user_login(request):
 			return HttpResponse("Invalid login details supplied.")
 
 	# The request is not a HTTP POST, so display the login form.
-	# This scenario would most likely be a HTTP GET.
 	else:
-		# No context variables to pass to the template system, hence the
-		# blank dictionary object...
+		# No context variables to pass to the template system
 		return render_to_response('dietapp/login.html', {}, context)
 
 
 @login_required
 def user_logout(request):
-	# Since we know the user is logged in, we can now just log them out.
+	# just log  out.
 	logout(request)
 
 	# Take the user back to the homepage.
 	return HttpResponseRedirect('/dietapp/')
+
+@login_required
+def settings_page(request):
+	template = loader.get_template('dietapp/settings_page.html')
+	context = RequestContext(request, {})
+	return HttpResponse(template.render(context))

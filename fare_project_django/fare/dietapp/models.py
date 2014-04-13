@@ -13,12 +13,17 @@ class UserProfile(models.Model):
 	age = models.PositiveIntegerField()
 	height = models.PositiveIntegerField()
 	weight = models.PositiveIntegerField()
-	gender = models.BooleanField()
+	# gender = models.BooleanField()
+	GENDER_CHOICES = (
+		('M', 'Male'),
+		('F', 'Female'),
+	)
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
 	avg_cooking_time = models.PositiveIntegerField()
 
-	# Override the __unicode__() method to return out something meaningful!
-	def __unicode__(self):
-		return self.user.username
+# Override the __unicode__() method to return out something meaningful!
+def __unicode__(self):
+	return self.user.username
 
 #(User_id, Recipe_id, is_liked, is_consumed)
 class RecipeActivity(models.Model):
@@ -29,7 +34,7 @@ class RecipeActivity(models.Model):
 
 	# Override the __unicode__() method to return out something meaningful!
 	def __unicode__(self):
-		return "%s - %s" % (self.Recipe_id, self.User_id)
+		return "%s - %s" % (self.recipe_id, self.user_id)
 
 
 # (activity_type_id, activity_name)
@@ -49,4 +54,4 @@ class ActivityEvent(models.Model):
 	date_created = models.DateTimeField()
 
 	def __unicode__(self):
-		return "%s - %s - %s" % (self.User_id, self.Recipe_id, self.date_created)
+		return "%s - %s - %s" % (self.user_id, self.recipe_id, self.date_created)
