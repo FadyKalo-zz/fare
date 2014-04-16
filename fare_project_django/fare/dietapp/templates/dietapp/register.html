@@ -1,16 +1,15 @@
 {% extends 'layouts/main.html' %}
 {% load static %}
 {% block body_block %}
-
     <div class="container">
         <h3>Register</h3>
 
         <div class="container">
             {% if registered %}
                 <p>Thank you for registering.</p>
-                <p><a href="/dietapp/login/">Login</a> when you are ready to dietapp.</p>
+                <p><a href="{% url 'home' %}">Login</a> when you are ready to dietapp.</p>
             {% else %}
-                <form class="" id="user_form" method="post" action="/dietapp/register/"
+                <form class="" id="user_form" method="post" action="{% url 'register' %}"
                       enctype="multipart/form-data" role="form">
                     {% csrf_token %}
                     <!-- Display each form here -->
@@ -27,9 +26,9 @@
 
                     {% for field in profile_form.visible_fields %}
                         <div class="form-group">
-                        {{ field.errors }}
-                         <label> {{ field.help_text }} </label>
-                        {{ field }}
+                            {{ field.errors }}
+                            <label> {{ field.help_text }} </label>
+                            {{ field }}
                         </div>
                     {% endfor %}
 

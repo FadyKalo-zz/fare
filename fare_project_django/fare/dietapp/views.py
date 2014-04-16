@@ -1,17 +1,19 @@
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext, loader
-from django.contrib.auth import logout
+from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 
-from yummly import *
 import json
 import helpFunc as hf
 # from helpFunc import fetch_meals, getRecipeInfo
 
 # needed in the register() view
 from dietapp.forms import UserForm, UserProfileForm
+from models import UserProfile, Diet
+
 
 def recipe(request):
 	recipe_id = request.GET.get('recipe_id', '')
@@ -20,18 +22,18 @@ def recipe(request):
 		recipe_details = hf.get_full_recipe_info(recipe_id)
 		# info = hf.getRecipeInfo(recipe_id)
 
-		attributes_of_interest = ["PROCNT", "FAT_KCAL", "FAPU", "CHOCDF","ENERC_KJ"]
+		attributes_of_interest = ["PROCNT", "FAT_KCAL", "FAPU", "CHOCDF", "ENERC_KJ"]
 		nutrition_elements = recipe_details["nutritionEstimates"]
-		images=recipe_details["images"]
-		nutrition_arr,images_arr,attr_arr = [],[],[]
+		images = recipe_details["images"]
+		nutrition_arr, images_arr, attr_arr = [], [], []
 
-		for k,v in recipe_details["attributes"].items():
-			attr_arr +=v
+		for k, v in recipe_details["attributes"].items():
+			attr_arr += v
 
-
-		for x,v in images[0].items():
+		for x, v in images[0].items():
 			images_arr.append(v)
-		# print images_arr
+
+		recipe_details["flavors"].update((x, y * 100) for x, y in recipe_details["flavors"].items())
 
 		for x in nutrition_elements:
 			dic = {}
@@ -42,20 +44,14 @@ def recipe(request):
 				dic["unit"] = unit["abbreviation"]
 				nutrition_arr.append(dic)
 
-		context = {"name": recipe_details["name"],
-
-		   "attributes": attr_arr,
-		   "time": recipe_details["totalTime"],
-		   "ingredients": recipe_details["ingredientLines"],
-		   "flavors": recipe_details["flavors"].update(
-			   (x, y * 100) for x, y in recipe_details["flavors"].items()),
-		   "nutrition": nutrition_arr,
-		   # passing just the first picture here, can be improved
-		   "images":images_arr[0]
-		}
-		print context["attributes"]
-
-	except Recipe.DoesNotExist:
+		context = {'name': recipe_details["name"],
+				   'attributes': attr_arr,
+				   'time': recipe_details["totalTime"],
+				   'ingredients': recipe_details["ingredientLines"],
+				   'flavors': recipe_details["flavors"],
+				   'nutrition': nutrition_arr,
+				   'images': images_arr[0]}
+	except ObjectDoesNotExist:
 		raise Http404
 
 	return render(request, 'dietapp/recipe.html', context)
@@ -71,10 +67,21 @@ def diets_v2(request):
 @login_required
 def recipes_v2(request):
 	template = loader.get_template('dietapp/recipes_v2.html')
-	diet=request.GET.get('diet','')
-	context = RequestContext(request, {
-		'diet':diet
-	})
+	diet = request.GET.get('diet', '')
+
+	# request.session["current_diet"] = diet
+	# cur_diet = request.session["current_diet"]
+	# print cur_diet
+
+	pk_user = request.user
+	user_profile = UserProfile.objects.get(user=pk_user)
+	# cur_diet = user_profile.current_diet
+	# if cur_diet is None:
+	user_profile.current_diet = Diet.objects.get(diet_name=diet)
+	# print cur_diet, user_profile
+	user_profile.save()
+	# print UserProfile.objects.get(user=pk_user).current_diet
+	context = RequestContext(request, {'diet': diet})
 	return HttpResponse(template.render(context))
 
 
@@ -107,7 +114,7 @@ def recipeInfo(request):
 def register(request):
 	fav_color = request.session["fav_color"]
 	print fav_color
-	# Like before, get the request's context.
+	# Like before, get the request context.
 	context = RequestContext(request)
 
 	# A boolean value for telling the template whether the registration was successful.
@@ -162,11 +169,11 @@ def register(request):
 
 	# Render the template depending on the context.
 	return render_to_response('dietapp/register.html',
-							  {'user_form': user_form, 'profile_form': profile_form, 'registered': registered}, context)
+							  {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
+							  context)
 
 
 def user_login(request):
-
 	# Set a session value:
 	request.session["fav_color"] = "blue"
 
@@ -189,7 +196,14 @@ def user_login(request):
 				# If the account is valid and active, we can log the user in.
 				# Send the user back to the homepage.
 				login(request, user)
-				return HttpResponseRedirect('/dietapp/')
+				cur_diet = None
+				pk_user = request.user
+				cur_diet = UserProfile.objects.get(user=pk_user).current_diet
+				if cur_diet is not None:
+					ctx = {"diet": cur_diet}
+					return render_to_response('dietapp/recipes_v2.html', ctx, context_instance=RequestContext(request))
+				else:
+					return HttpResponseRedirect(reverse('home'))
 			else:
 				# An inactive account was used - no logging in!
 				return HttpResponse("Your Dietapp account is disabled.")
@@ -197,7 +211,6 @@ def user_login(request):
 			# Bad login details were provided. So we can't log the user in.
 			print "Invalid login details: {0}, {1}".format(username, password)
 			return HttpResponse("Invalid login details supplied.")
-
 	# The request is not a HTTP POST, so display the login form.
 	else:
 		# No context variables to pass to the template system
@@ -212,8 +225,59 @@ def user_logout(request):
 	# Take the user back to the homepage.
 	return HttpResponseRedirect('/dietapp/')
 
+
 @login_required
 def settings_page(request):
-	template = loader.get_template('dietapp/settings_page.html')
-	context = RequestContext(request, {})
-	return HttpResponse(template.render(context))
+	context = RequestContext(request)
+	user = request.user
+	# username = None
+	# if request.user.is_authenticated():
+	# 	username = user.username
+
+	this_profile = UserProfile.objects.get(user=user)
+	# If it's a HTTP POST, we're interested in processing form data.
+	registered = False
+	if request.method == 'POST':
+
+		profile_form = UserProfileForm(data=request.POST, instance=this_profile)
+
+		# If the two forms are valid...
+		if profile_form.is_valid():
+
+			# Now sort out the UserProfile instance.
+			# Since we need to set the user attribute ourselves, we set commit=False.
+			# This delays saving the model until we're ready to avoid integrity problems.
+			profile = profile_form.save(commit=False)
+			profile.user = user
+
+			# Did the user provide a profile picture?
+			# If so, we need to get it from the input form and put it in the UserProfile model.
+			if 'picture' in request.FILES:
+				profile.picture = request.FILES['picture']
+
+			# Now we save the UserProfile model instance.
+			profile.save()
+			# Update our variable to tell the template registration was successful.
+			registered = True
+		# Invalid form or forms - mistakes or something else?
+		# Print problems to the terminal.
+		# They'll also be shown to the user.
+		else:
+			print profile_form.errors
+	# Not a HTTP POST, so we render our form using two ModelForm instances.
+	# These forms will be blank, ready for user input.
+	else:
+		profile_form = UserProfileForm(instance=this_profile)
+
+	if registered:
+		cur_diet = UserProfile.objects.get(user=user).current_diet
+		ctx = {"diet": cur_diet}
+		return render_to_response('dietapp/recipes_v2.html', ctx, context_instance=RequestContext(request))
+	else:
+	# Render the template depending on the context.
+		return render_to_response('dietapp/settings_page.html', {'profile_form': profile_form}, context)
+
+		# print(username, user, user.email, user.get_username())
+		# template = loader.get_template('dietapp/settings_page.html')
+		# context = RequestContext(request, {})
+		# return HttpResponse(template.render(context))

@@ -69,7 +69,6 @@
 
 /* End carousel */
 
-
 .meals-hero {
     min-height: 167px;
     color: #ECF0F1;
@@ -81,19 +80,19 @@
 }
 
 .breakfast-hero {
-    background-color: #F1C40F;
-}
-
-.lunch-hero {
-    background-color: #f39c12;
-}
-
-.snack-hero {
     background-color: #e67e22;
 }
 
+.lunch-hero {
+    background-color: #f1c40f;
+}
+
+.snack-hero {
+    background-color: #2ecc71;
+}
+
 .dinner-hero {
-    background-color: #d35400;
+    background-color: #3498db;
 }
 
 .item blockquote {
@@ -114,100 +113,103 @@
 }
 
 .breakfast .item {
-    border-bottom: 1px solid #F1C40F;
-}
-
-.lunch .item {
-    border-bottom: 1px solid #f39c12;
-}
-
-.snack .item {
     border-bottom: 1px solid #e67e22;
 }
 
+.lunch .item {
+    border-bottom: 1px solid #f1c40f;
+}
+
+.snack .item {
+    border-bottom: 1px solid #2ecc71;
+}
+
 .dinner .item {
-    border-bottom: 1px solid #d35400;
+    border-bottom: 1px solid #3498db;
 }
 
 .breakfast .rating .glyphicon {
     font-size: 24px;
-    color: #F1C40F;
+    color: #e67e22;
 }
 
 .lunch .rating .glyphicon {
     font-size: 24px;
-    color: #f39c12;
+    color: #f1c40f;
 }
 
 .snack .rating .glyphicon {
     font-size: 24px;
-    color: #e67e22;
+    color: #2ecc71;
 }
 
 .dinner .rating .glyphicon {
     font-size: 24px;
-    color: #d35400;
+    color: #3498db;
 }
 
 .breakfast .btn-group .btn-primary,
-.breakfast .item-info .label{
-    background-color: #F1C40F;
-}
-
-.lunch .btn-group .btn-primary,
-.lunch .item-info .label{
-    background-color: #f39c12;
-}
-
-.snack .btn-group .btn-primary,
-.snack .item-info .label{
+.breakfast .item-info .label {
     background-color: #e67e22;
 }
 
-.dinner .btn-group .btn-primary,
-.dinner .item-info .label{
-    background-color: #d35400;
+.lunch .btn-group .btn-primary,
+.lunch .item-info .label {
+    background-color: #f1c40f;
 }
 
-.carousel .lunch{
-    background-color: #f39c12;
+.snack .btn-group .btn-primary,
+.snack .item-info .label {
+    background-color: #2ecc71;
 }
+
+.dinner .btn-group .btn-primary,
+.dinner .item-info .label {
+    background-color: #3498db;
+}
+
+/*.carousel .lunch {*/
+    /*background-color: #f39c12;*/
+/*}*/
 
 .breakfast .btn-primary:hover,
 .breakfast .btn-primary:focus,
 .breakfast .btn-primary:active,
 .breakfast .btn-primary.active,
 .breakfast .open,
-.breakfast .dropdown-toggle.btn-primary{
-    background-color: #f39c12;
-    border-color: #f39c12;
+.breakfast .dropdown-toggle.btn-primary {
+    background-color: #e67e22;
+    border-color: #e67e22;
 }
+
 .lunch .btn-primary:hover,
 .lunch .btn-primary:focus,
 .lunch .btn-primary:active,
 .lunch .btn-primary.active,
 .lunch .open,
-.lunch .dropdown-toggle.btn-primary{
-    background-color: #e67e22;
-    border-color: #e67e22;
+.lunch .dropdown-toggle.btn-primary {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
 }
+
 .snack .btn-primary:hover,
 .snack .btn-primary:focus,
 .snack .btn-primary:active,
 .snack .btn-primary.active,
 .snack .open,
-.snack .dropdown-toggle.btn-primary{
-    background-color: #d35400;
-    border-color: #d35400;
+.snack .dropdown-toggle.btn-primary {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
 }
+
 .dinner .btn-primary:hover,
 .dinner .btn-primary:focus,
 .dinner .btn-primary:active,
 .dinner .btn-primary.active,
 .dinner .open,
-.dinner .dropdown-toggle.btn-primary{
-    background-color: #e74c3c;
-    border-color: #e74c3c;
+.dinner .dropdown-toggle.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
 }
 
 .carousel .btn-group {

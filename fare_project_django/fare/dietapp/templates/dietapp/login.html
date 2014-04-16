@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xs-12"><h3>Login to Dietapp</h3></div>
             <div class="col-xs-12">
-                <form id="login_form" method="post" action="/dietapp/login/" role="form">
+                <form id="login_form" method="post" action="{% url 'login' %}" role="form">
                     {% csrf_token %}
                     <div class="form-group">
 

@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Diet(models.Model):
+	diet_name = models.CharField(max_length=200)
+	diet_parameters = models.CharField(max_length=200)
+	diet_decription = models.CharField(max_length=200)
+
+	def __unicode__(self):
+		return "%s" % (self.diet_name)
+
 # USER PROFILE ( website_link, age, height, weight?, gender, allergy, avg_cooking_time)
 class UserProfile(models.Model):
 	# This line is required. Links UserProfile to a User model instance.
@@ -14,16 +22,15 @@ class UserProfile(models.Model):
 	height = models.PositiveIntegerField()
 	weight = models.PositiveIntegerField()
 	# gender = models.BooleanField()
-	GENDER_CHOICES = (
-		('M', 'Male'),
-		('F', 'Female'),
-	)
+	GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'))
 	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
 	avg_cooking_time = models.PositiveIntegerField()
+	current_diet=models.OneToOneField(Diet,null=True)
 
-# Override the __unicode__() method to return out something meaningful!
-def __unicode__(self):
-	return self.user.username
+	# Override the __unicode__() method to return out something meaningful!
+	def __unicode__(self):
+		return self.user.username
+
 
 #(User_id, Recipe_id, is_liked, is_consumed)
 class RecipeActivity(models.Model):
@@ -46,6 +53,7 @@ class ActivityType(models.Model):
 		return "%s - %s" % (self.activity_type_id, self.activity_name)
 
 
+# Activity of User on the daily meals
 # Activity_event(User_id, Recipe_id, Type_id, date_created)
 class ActivityEvent(models.Model):
 	user_id = models.ForeignKey(User)
@@ -55,3 +63,13 @@ class ActivityEvent(models.Model):
 
 	def __unicode__(self):
 		return "%s - %s - %s" % (self.user_id, self.recipe_id, self.date_created)
+
+class DietUser(models.Model):
+	user = models.ForeignKey(User)
+	diet = models.ForeignKey(Diet)
+	start_date = models.DateField('date the user started the diet')
+
+	def __unicode__(self):
+		return "%s - %s" % (self.user, self.diet)
+
+
