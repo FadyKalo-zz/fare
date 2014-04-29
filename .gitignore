@@ -8,3 +8,6 @@ __pycachei__/
 # MAC stuff
 .DS_Store
 
+#Secret file
+secrets.json
+

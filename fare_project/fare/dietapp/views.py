@@ -58,15 +58,15 @@ def recipe(request):
 
 
 @login_required
-def diets_v2(request):
-	template = loader.get_template('dietapp/diets_v2.html')
+def diets(request):
+	template = loader.get_template('dietapp/diets.html')
 	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
 
 
 @login_required
-def recipes_v2(request):
-	template = loader.get_template('dietapp/recipes_v2.html')
+def recipes(request):
+	template = loader.get_template('dietapp/recipes.html')
 	diet = request.GET.get('diet', '')
 
 	# request.session["current_diet"] = diet
@@ -201,7 +201,7 @@ def user_login(request):
 				cur_diet = UserProfile.objects.get(user=pk_user).current_diet
 				if cur_diet is not None:
 					ctx = {"diet": cur_diet}
-					return render_to_response('dietapp/recipes_v2.html', ctx, context_instance=RequestContext(request))
+					return render_to_response('dietapp/recipes.html', ctx, context_instance=RequestContext(request))
 				else:
 					return HttpResponseRedirect(reverse('home'))
 			else:
@@ -272,7 +272,7 @@ def settings_page(request):
 	if registered:
 		cur_diet = UserProfile.objects.get(user=user).current_diet
 		ctx = {"diet": cur_diet}
-		return render_to_response('dietapp/recipes_v2.html', ctx, context_instance=RequestContext(request))
+		return render_to_response('dietapp/recipes.html', ctx, context_instance=RequestContext(request))
 	else:
 	# Render the template depending on the context.
 		return render_to_response('dietapp/settings_page.html', {'profile_form': profile_form}, context)
