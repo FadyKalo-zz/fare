@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Diet(models.Model):
-	diet_name = models.CharField(max_length=200)
-	diet_parameters = models.CharField(max_length=200)
-	diet_decription = models.CharField(max_length=200)
+	diet_name = models.CharField(primary_key=True,max_length=200)
+	diet_title = models.CharField(max_length=200)
+	diet_parameters = models.TextField(null=True)
+	diet_description = models.CharField(max_length=200)
 
 	def __unicode__(self):
 		return "%s" % (self.diet_name)
@@ -25,7 +26,7 @@ class UserProfile(models.Model):
 	GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'))
 	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
 	avg_cooking_time = models.PositiveIntegerField()
-	current_diet=models.OneToOneField(Diet,null=True)
+	current_diet=models.OneToOneField(Diet,blank=True, null=True, on_delete=models.SET_NULL)
 
 	# Override the __unicode__() method to return out something meaningful!
 	def __unicode__(self):

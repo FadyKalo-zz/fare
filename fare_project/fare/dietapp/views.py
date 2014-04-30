@@ -7,8 +7,7 @@ from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 
 import json
-import helpFunc as hf
-# from helpFunc import fetch_meals, getRecipeInfo
+import algo as hf
 
 # needed in the register() view
 from dietapp.forms import UserForm, UserProfileForm
@@ -19,7 +18,7 @@ def recipe(request):
 	recipe_id = request.GET.get('recipe_id', '')
 
 	try:
-		recipe_details = hf.get_full_recipe_info(recipe_id)
+		recipe_details = hf.get_recipe(recipe_id)
 		# info = hf.getRecipeInfo(recipe_id)
 
 		attributes_of_interest = ["PROCNT", "FAT_KCAL", "FAPU", "CHOCDF", "ENERC_KJ"]
@@ -44,29 +43,41 @@ def recipe(request):
 				dic["unit"] = unit["abbreviation"]
 				nutrition_arr.append(dic)
 
-		context = {'name': recipe_details["name"],
-				   'attributes': attr_arr,
-				   'time': recipe_details["totalTime"],
-				   'ingredients': recipe_details["ingredientLines"],
-				   'flavors': recipe_details["flavors"],
-				   'nutrition': nutrition_arr,
-				   'images': images_arr[0]}
+		context = {
+		'name': recipe_details["name"],
+		'attributes': attr_arr,
+		'time': recipe_details["totalTime"],
+		'ingredients': recipe_details["ingredientLines"],
+		'flavors': recipe_details["flavors"],
+		'nutrition': nutrition_arr,
+		'images': images_arr[0]
+		}
 	except ObjectDoesNotExist:
 		raise Http404
 
 	return render(request, 'dietapp/recipe.html', context)
 
 
-@login_required
-def diets(request):
-	template = loader.get_template('dietapp/diets.html')
-	context = RequestContext(request, {})
-	return HttpResponse(template.render(context))
+# @login_required
+# def diets(request):
+# 	template = loader.get_template('dietapp/diets.html')
+# 	context = RequestContext(request, {})
+# 	return HttpResponse(template.render(context))
 
 
 @login_required
-def recipes(request):
-	template = loader.get_template('dietapp/recipes.html')
+def test(request):
+	template = 'dietapp/diets.html'
+	available_diets = Diet.objects.all()
+	context = {"diets":available_diets,
+	"diet":available_diets[0]}
+	print context["diet"].diet_description
+	return render(request, template, context)
+
+
+@login_required
+def day_meals(request):
+	template = loader.get_template('dietapp/day_meals.html')
 	diet = request.GET.get('diet', '')
 
 	# request.session["current_diet"] = diet
@@ -95,7 +106,7 @@ def get_recipes(request, meal):
 	:return:
 	"""
 	myDiet = request.GET.get('diet', '')
-	mealList = hf.fetch_meals(meal, myDiet)
+	mealList = hf.get_meals(meal, myDiet)
 	return HttpResponse(json.dumps(mealList), content_type="application/json")
 
 
@@ -104,7 +115,7 @@ def recipeInfo(request):
 	recipe_id = request.GET.get('recipe_id', '')
 	if recipe_id != '':
 		# info is a list of 2 lists where the first list is Ingredients and the second is nutrition
-		info = hf.getRecipeInfo(recipe_id)
+		info = hf.get_recipe_info(recipe_id)
 	else:
 		# handle errors
 		info = {'error': 'Recipe Id field is required!'}
@@ -169,8 +180,8 @@ def register(request):
 
 	# Render the template depending on the context.
 	return render_to_response('dietapp/register.html',
-							  {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
-							  context)
+		{'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
+		context)
 
 
 def user_login(request):
@@ -201,7 +212,7 @@ def user_login(request):
 				cur_diet = UserProfile.objects.get(user=pk_user).current_diet
 				if cur_diet is not None:
 					ctx = {"diet": cur_diet}
-					return render_to_response('dietapp/recipes.html', ctx, context_instance=RequestContext(request))
+					return render_to_response('dietapp/day_meals.html', ctx, context_instance=RequestContext(request))
 				else:
 					return HttpResponseRedirect(reverse('home'))
 			else:
@@ -272,7 +283,7 @@ def settings_page(request):
 	if registered:
 		cur_diet = UserProfile.objects.get(user=user).current_diet
 		ctx = {"diet": cur_diet}
-		return render_to_response('dietapp/recipes.html', ctx, context_instance=RequestContext(request))
+		return render_to_response('dietapp/day_meals.html', ctx, context_instance=RequestContext(request))
 	else:
 	# Render the template depending on the context.
 		return render_to_response('dietapp/settings_page.html', {'profile_form': profile_form}, context)

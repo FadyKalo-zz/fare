@@ -1,45 +1,24 @@
 {% extends 'layouts/main.html' %}
 {% load static %}
 {% block body_block %}
-    <div class="row">
-        <div class="col-xs-12">
-            <a href=" {% url 'meals' %}?diet=Veggie">
-                <img class="img-responsive diet-hero" src="{% static 'img/vegetarian.jpg' %}"/>
-
-                <div class="img-overlay-label font-large">
-                    <span class="text">Vegetarian</span>
+    {% for diet in diets %}
+        <div class="row">
+            <a href=" {% url 'meals' %}?diet={{ diet.diet_name }}">
+                <div class="col-xs-12 diet-hero">
+                    {#                <img class="img-responsive diet-hero" src="{% static 'img/vegetarian.jpg' %}"/>#}
+                    <div class=" font-large">
+                        <span class="text">{{ diet.diet_title }}</span>
+                    </div>
+                    <div>{{ diet.diet_description }}</div>
                 </div>
             </a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <a href="{% url 'meals' %}?diet=ProteinHigh">
-                <img class="img-responsive diet-hero" src="{% static 'img/high_protein.jpg' %}"/>
-
-                <div class="img-overlay-label font-large">
-                    <span class="text">Protein High</span>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <a href="{% url 'meals' %}?diet=GlutenFreeDelicious">
-                <img class="img-responsive diet-hero" src="{% static 'img/gluten_free.jpg' %}"/>
-
-                <div class="img-overlay-label font-large">
-                    <span class="text">Gluten Free</span>
-                </div>
-            </a>
-        </div>
-    </div>
+    {% endfor %}
 {% endblock %}
 
 {% block js_block %}
-
 {% endblock %}
 
 {% block css_block %}
-    <link href="{% static 'css/diets_v2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/diets.css' %}" rel="stylesheet">
 {% endblock %}
