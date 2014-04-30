@@ -2,17 +2,29 @@ import yummly as ym
 import json
 import diet_settings as ds
 from dietapp.models import Diet
+from fare.settings import get_secret
 
 #TODO(fady): this one has to become a secrets.json
 TIMEOUT = 5.0
 RETRIES = 0
-API_ID = 'f679e06d'
-API_KEY = 'b7d0fb2f961db4832b468523283d5bc0'
+
+API_ID = get_secret("YUMMLY_API_ID")
+API_KEY = get_secret("YUMMLY_API_KEY")
+
 # connect to the API
 client = ym.Client(api_id=API_ID, api_key=API_KEY, timeout=TIMEOUT, retries=RETRIES)
 
 
+#TODO(fady): check for conflict in the blend of parameters
 def blend(diet, user, adjustment, meal):
+	"""
+
+	:param diet:
+	:param user:
+	:param adjustment:
+	:param meal:
+	:return:
+	"""
 	temp_dict = {}
 	for current in [diet, user, adjustment]:
 		for k, v in current.items():
@@ -23,7 +35,8 @@ def blend(diet, user, adjustment, meal):
 					temp_dict[k] = v
 			else:
 				temp_dict[k] = v
-	temp_dict["allowedCourse[]"] = ds.params_course[meal]
+	temp_dict["allowedCourse[]"] = ds.params_course_allowed[meal]
+	temp_dict["excludedCourse[]"] = ds.params_course_excluded[meal]
 	return temp_dict
 
 
@@ -36,15 +49,12 @@ def get_meals(meal_type, diet):
 	:return:
 	"""
 
-	a = Diet.objects.get(diet_name=diet).diet_parameters
-	myjson = json.loads(a)
-
-	diet_param = myjson
+	diet_param = json.loads(Diet.objects.get(diet_name=diet).diet_parameters)
 	user_param = {}
 	adjust_param = {}
 	final_params = blend(diet_param, user_param, adjust_param, meal_type)
-	# if meal_type in "breakfast":
-	# 	print final_params
+	if meal_type in "dinner":
+		print final_params
 
 	# execute the search with the selected list of parameters
 	results = client.search(**final_params)
@@ -57,26 +67,6 @@ def get_meals(meal_type, diet):
 			match.attributes]
 
 	return meals
-
-
-def insert_param(meal_type, diet, specifics, param_dict):
-	"""
-
-	given a diet e.g: 'Veggie' as a parameter and the Specifics of each diet this
-	function adds the dietSpecific parameter to the generic ones. i.e: StdParams -- enterFunc --
-
-	:rtype : dict
-	:param meal_type:
-	:param diet:
-	:param specifics:
-	:param param_dict:
-	:return:
-	"""
-	param_dict['q'] = meal_type
-	for key, value in specifics.items():
-		if key == diet:
-			param_dict.update({value[0]: value[1]})
-	return param_dict
 
 
 def get_recipe_info(recipe_id):

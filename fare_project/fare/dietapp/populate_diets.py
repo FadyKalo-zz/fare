@@ -14,13 +14,32 @@ def populate():
 	"""
 
 	veggie_diet = ds.params_veggie
-	vd = add_diet("veggie","Veggie" ,veggie_diet, "basic vegeterian diet")
+	veggie_diet.update(ds.params_std)
+	vd = add_diet("veggie","Veggie" ,veggie_diet, "Basic vegeterian diet")
 
 	protein_diet = ds.params_protein_high
-	pd = add_diet("protein_high", "Protein High",protein_diet, "let's add some protein")
+	protein_diet.update(ds.params_std)
+	pd = add_diet("protein_high", "Protein High",protein_diet, "Let's add some protein")
 
 	gluten_free_diet = ds.params_gluten_free
-	gd = add_diet("gluten_free","Gluten Free" ,gluten_free_diet, "no starch today")
+	gluten_free_diet.update(ds.params_std)
+	gd = add_diet("gluten_free","Gluten Free" ,gluten_free_diet, "No starch today")
+
+	italian_diet = ds.params_italian
+	italian_diet.update(ds.params_std)
+	itd = add_diet("italian","Italian" ,italian_diet, "Your palate says thanks")
+
+	greek_diet = ds.params_greek
+	greek_diet.update(ds.params_std)
+	gkd = add_diet("greek","Greek" ,greek_diet, "The real deal")
+
+	mexican_diet = ds.params_mexican
+	mexican_diet.update(ds.params_std)
+	med = add_diet("mexican","Mexican" ,mexican_diet, "Spice up your meal")
+
+	japanese_diet = ds.params_japanese
+	japanese_diet.update(ds.params_std)
+	jpd = add_diet("japanese","Japanese" ,japanese_diet, "Sophisticate your diet")
 
 
 # a = Diet.objects.get(diet_name="test").diet_parameters
