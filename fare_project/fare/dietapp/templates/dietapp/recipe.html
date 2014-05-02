@@ -1,7 +1,8 @@
 {% extends 'layouts/main.html' %}
 {% load static %}
+{% csrf_token %}
 {% block body_block %}
-    <div class='row recipe dinner'>
+    <div id="recipe" class='row recipe' data-recid="{{ id }}">
         <div class='col-xs-12'>
             <div class="row pad-top-20">
                 <div class="col-xs-4 pad-left-25">
@@ -34,8 +35,8 @@
                             <span class="fui-time"></span>
                             <span class="time-value">{{ time }}</span>
                         </a>
-                        <a class="btn btn-primary" href="#"><span class="fui-check"></span></a>
-                        <a class="btn btn-primary" href="#"><span class="fui-heart"></span></a>
+                        <a id="done" class="btn btn-primary" href="#"><span class="fui-check"></span></a>
+                        <a id="like" class="btn btn-primary" href="#"><span class="fui-heart"></span></a>
                         {#                        <a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>#}
                     </div>
                 </div>
@@ -84,4 +85,7 @@
 {% endblock %}
 {% block css_block %}
     <link href="{% static 'css/recipe.css' %}" rel="stylesheet">
+{% endblock %}
+{% block js_block %}
+    <script src="{% static 'js/recipe_info.js' %}"></script>
 {% endblock %}

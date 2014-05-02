@@ -1,5 +1,5 @@
-function get_content(type, diet) {
-    $.get('/dietapp/recipe/' + type + "?diet=" + diet,function () {
+function get_content(type, diet,flag) {
+    $.get('/dietapp/recipe/' + type, {diet :diet,flag:flag},function () {
     }).done(function (data) {
             load_carousel(data, type);
         })
@@ -63,6 +63,7 @@ $(document).ready(function () {
     $('div.carousel').each(function (index, element) {
         var type = $(element).attr('data-meal-type');
         var diet = $(element).attr('data-diet');
-        get_content(type, diet);
+        var flag = $(element).attr('data-flag');
+        get_content(type, diet,flag);
     }).carousel({interval: false});
 });

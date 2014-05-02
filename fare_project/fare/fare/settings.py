@@ -51,7 +51,9 @@ INSTALLED_APPS = (
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	# The local apps
-	'dietapp'
+	'dietapp',
+	# DB migration
+	'south'
 )
 
 MIDDLEWARE_CLASSES = (

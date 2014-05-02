@@ -4,13 +4,10 @@ import diet_settings as ds
 from dietapp.models import Diet
 from fare.settings import get_secret
 
-#TODO(fady): this one has to become a secrets.json
 TIMEOUT = 5.0
 RETRIES = 0
-
 API_ID = get_secret("YUMMLY_API_ID")
 API_KEY = get_secret("YUMMLY_API_KEY")
-
 # connect to the API
 client = ym.Client(api_id=API_ID, api_key=API_KEY, timeout=TIMEOUT, retries=RETRIES)
 

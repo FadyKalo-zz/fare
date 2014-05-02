@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Diet(models.Model):
-	diet_name = models.CharField(primary_key=True,max_length=200)
+	diet_name = models.CharField(primary_key=True, max_length=200)
 	diet_title = models.CharField(max_length=200)
 	diet_parameters = models.TextField(null=True)
 	diet_description = models.CharField(max_length=200)
@@ -26,7 +26,7 @@ class UserProfile(models.Model):
 	GENDER_CHOICES = (('M', 'Male'), ('F', 'Female'))
 	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
 	avg_cooking_time = models.PositiveIntegerField()
-	current_diet=models.OneToOneField(Diet,blank=True, null=True, on_delete=models.SET_NULL)
+	current_diet = models.OneToOneField(Diet, blank=True, null=True, on_delete=models.SET_NULL)
 
 	# Override the __unicode__() method to return out something meaningful!
 	def __unicode__(self):
@@ -37,8 +37,11 @@ class UserProfile(models.Model):
 class RecipeActivity(models.Model):
 	user_id = models.ForeignKey(User)
 	recipe_id = models.CharField(max_length=200)
-	is_liked = models.BooleanField()
-	is_consumed = models.BooleanField()
+	is_liked = models.NullBooleanField()
+	is_consumed = models.NullBooleanField()
+
+	class Meta:
+		unique_together = (("user_id", "recipe_id"),)
 
 	# Override the __unicode__() method to return out something meaningful!
 	def __unicode__(self):
@@ -47,8 +50,8 @@ class RecipeActivity(models.Model):
 
 # (activity_type_id, activity_name)
 class ActivityType(models.Model):
-	activity_type_id = models.CharField(max_length=200)
-	activity_name = models.CharField(max_length=200)
+	activity_type_id = models.CharField(primary_key=True, max_length=20)
+	activity_name = models.CharField(max_length=20)
 
 	def __unicode__(self):
 		return "%s - %s" % (self.activity_type_id, self.activity_name)
@@ -65,12 +68,22 @@ class ActivityEvent(models.Model):
 	def __unicode__(self):
 		return "%s - %s - %s" % (self.user_id, self.recipe_id, self.date_created)
 
+
 class DietUser(models.Model):
 	user = models.ForeignKey(User)
 	diet = models.ForeignKey(Diet)
-	start_date = models.DateField('date the user started the diet')
+	start_date = models.DateTimeField('moment the user started the diet')
 
 	def __unicode__(self):
 		return "%s - %s" % (self.user, self.diet)
+
+
+class UserDailyMeals(models.Model):
+	user = models.ForeignKey(User)
+	date = models.DateTimeField('today\'s login', null=True)
+	meals = models.TextField(null=True, blank=True)
+
+	def __unicode__(self):
+		return "%s - %s" % (self.user, self.date)
 
 

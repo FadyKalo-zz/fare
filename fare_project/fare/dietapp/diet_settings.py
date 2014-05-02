@@ -1,110 +1,110 @@
 params_std = {
-	"q": "", # make this generic
-	"start": 0,
-	"maxResult": 10,
-	"requirePicutres": True,
-	"maxTotalTimeInSeconds": 3600,
+"q": "", # make this generic
+"start": 0,
+"maxResult": 10,
+"requirePicutres": True,
+"maxTotalTimeInSeconds": 3600,
 }
 
 params_course_allowed = {
-	"breakfast": ["course^course-Breakfast and Brunch"],
-	"lunch": ["course^course-Main Dishes", "course^course-Lunch and Snacks"],
-	"snack": ["course^course-Lunch and Snacks", "course^course-Desserts"],
-	"dinner": []
+"breakfast": ["course^course-Breakfast and Brunch"],
+"lunch": ["course^course-Main Dishes", "course^course-Lunch and Snacks"],
+"snack": ["course^course-Lunch and Snacks", "course^course-Desserts"],
+"dinner": []
 }
 
 params_course_excluded = {
-	"breakfast": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages"],
-	"lunch": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages"],
-	"snack": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages"],
-	"dinner": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages",
-		"course^course-Desserts", "course^course-Breads"]
+"breakfast": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages"],
+"lunch": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages"],
+"snack": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages"],
+"dinner": ["course^course-Cocktails", "course^course-Condiments and Sauces", "course^course-Beverages",
+	"course^course-Desserts", "course^course-Breads"]
 }
 
 params_veggie = {
-"facetField[]": ["ingredient", "diet"],
-"allowedDiet[]": ["387^Lacto-ovo vegetarian"],
+	"facetField[]": ["ingredient", "diet"],
+	"allowedDiet[]": ["387^Lacto-ovo vegetarian"],
 }
 
 params_protein_high = {
-"facetField[]": ["ingredient", "diet"],
-"nutrition.PROCNT.min": 20
+	"facetField[]": ["ingredient", "diet"],
+	"nutrition.PROCNT.min": 20
 }
 
 params_gluten_free = {
-"facetField[]": ["ingredient", "diet"],
-"allowedAllergy[]": "393^Gluten-Free",
+	"facetField[]": ["ingredient", "diet"],
+	"allowedAllergy[]": "393^Gluten-Free",
 }
 params_italian = {
-"allowedCuisine[]": "cuisine^cuisine-italian",
+	"allowedCuisine[]": "cuisine^cuisine-italian",
 }
 params_greek = {
-"allowedCuisine[]": "cuisine^cuisine-greek",
+	"allowedCuisine[]": "cuisine^cuisine-greek",
 }
 
 params_mexican = {
-"allowedCuisine[]": "cuisine^cuisine-mexican",
+	"allowedCuisine[]": "cuisine^cuisine-mexican",
 }
 
 params_japanese = {
-"allowedCuisine[]": "cuisine^cuisine-japanese",
+	"allowedCuisine[]": "cuisine^cuisine-japanese",
 }
 
 params_000 = {
-"q": "pork chops",
-"start": 0,
-"maxResult": 40,
-"requirePicutres": True,
-"facetField[]": ["ingredient", "diet"],
+	"q": "pork chops",
+	"start": 0,
+	"maxResult": 40,
+	"requirePicutres": True,
+	"facetField[]": ["ingredient", "diet"],
 
-"allowedIngredient[]": ["salt", "pepper"],
-"excludedIngredient[]": ["cumin", "paprika"],
+	"allowedIngredient[]": ["salt", "pepper"],
+	"excludedIngredient[]": ["cumin", "paprika"],
 
-"allowedAllergy[]": "",
-"allowedDiet[]": "",
-"allowedCuisine[]": "",
-"excludedCuisine[]": "",
-"allowedCourse[]": "",
-"excludedCourse[]": "",
-"allowedHoliday[]": "",
-"excludedHoliday[]": "",
+	"allowedAllergy[]": "",
+	"allowedDiet[]": "",
+	"allowedCuisine[]": "",
+	"excludedCuisine[]": "",
+	"allowedCourse[]": "",
+	"excludedCourse[]": "",
+	"allowedHoliday[]": "",
+	"excludedHoliday[]": "",
 
-"maxTotalTimeInSeconds": 3600,
+	"maxTotalTimeInSeconds": 3600,
 
-# "nutrition.ATTR_NAME.{min | max}": "",
-# "flavor.{sweet|meaty|sour|bitter|sweet|piquant}.{min|max}": "",
+	# "nutrition.ATTR_NAME.{min | max}": "",
+	# "flavor.{sweet|meaty|sour|bitter|sweet|piquant}.{min|max}": "",
 
 }
 
 params_999 = {
-"q": "pork chops",
-"start": 0,
-"maxResult": 40,
-"requirePicutres": True,
-"facetField[]": ["ingredient", "diet"],
+	"q": "pork chops",
+	"start": 0,
+	"maxResult": 40,
+	"requirePicutres": True,
+	"facetField[]": ["ingredient", "diet"],
 
-"allowedIngredient[]": ["salt", "pepper"],
-"excludedIngredient[]": ["cumin", "paprika"],
+	"allowedIngredient[]": ["salt", "pepper"],
+	"excludedIngredient[]": ["cumin", "paprika"],
 
-"allowedAllergy[]": "",
-"allowedDiet[]": "",
-"allowedCuisine[]": "",
-"excludedCuisine[]": "",
-"allowedCourse[]": "",
-"excludedCourse[]": "",
-"allowedHoliday[]": "",
-"excludedHoliday[]": "",
+	"allowedAllergy[]": "",
+	"allowedDiet[]": "",
+	"allowedCuisine[]": "",
+	"excludedCuisine[]": "",
+	"allowedCourse[]": "",
+	"excludedCourse[]": "",
+	"allowedHoliday[]": "",
+	"excludedHoliday[]": "",
 
-"maxTotalTimeInSeconds": 3600,
-"flavor.meaty.min": 0.5,
-"flavor.meaty.max": 1,
-"flavor.sweet.min": 0,
-"flavor.sweet.max": 0.5,
-"nutrition.FAT.min": 0,
-"nutrition.FAT.max": 15
+	"maxTotalTimeInSeconds": 3600,
+	"flavor.meaty.min": 0.5,
+	"flavor.meaty.max": 1,
+	"flavor.sweet.min": 0,
+	"flavor.sweet.max": 0.5,
+	"nutrition.FAT.min": 0,
+	"nutrition.FAT.max": 15
 
-# "nutrition.ATTR_NAME.{min | max}": "",
-# "flavor.{sweet|meaty|sour|bitter|sweet|piquant}.{min|max}": "",
+	# "nutrition.ATTR_NAME.{min | max}": "",
+	# "flavor.{sweet|meaty|sour|bitter|sweet|piquant}.{min|max}": "",
 
 }
 

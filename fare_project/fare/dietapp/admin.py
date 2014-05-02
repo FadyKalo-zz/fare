@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dietapp.models import UserProfile, RecipeActivity, ActivityEvent, ActivityType,Diet,DietUser
+from dietapp.models import UserProfile, RecipeActivity, ActivityEvent, ActivityType,Diet,DietUser,UserDailyMeals
 
 # Register your models here.
 admin.site.register(UserProfile)
@@ -8,3 +8,4 @@ admin.site.register(ActivityType)
 admin.site.register(ActivityEvent)
 admin.site.register(Diet)
 admin.site.register(DietUser)
+admin.site.register(UserDailyMeals)
