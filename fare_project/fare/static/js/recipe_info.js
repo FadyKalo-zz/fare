@@ -11,6 +11,7 @@ $(document).ready(function () {
             success: function (response) {
 //                console.log(response);
                 alert('You liked this');
+                $('#like').addClass('active')
             },
             error: function (rs, e) {
                 alert(rs.responseText);

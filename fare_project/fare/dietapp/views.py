@@ -18,6 +18,8 @@ from models import UserProfile, Diet, DietUser, UserDailyMeals,ActivityEvent,Act
 
 def recipe(request):
 	recipe_id = request.GET.get('recipe_id', '')
+	pk_user = request.user
+
 
 	try:
 		recipe_details = alg.get_recipe(recipe_id)
@@ -53,8 +55,17 @@ def recipe(request):
 		'ingredients': recipe_details["ingredientLines"],
 		'flavors': recipe_details["flavors"],
 		'nutrition': nutrition_arr,
-		'images': images_arr[0]
+		'images': images_arr[0],
+		# 'is_liked':False,
+		# 'is_consumed':False
 		}
+
+		#TODO(fady): make this check for existence more efficient
+		if RecipeActivity.objects.filter(user_id=pk_user,recipe_id=recipe_id).exists():
+			recipe_activity = RecipeActivity.objects.get(user_id=pk_user,recipe_id=recipe_id)
+			context['is_liked']=recipe_activity.is_liked
+			context['is_consumed']=recipe_activity.is_consumed
+			print context['is_liked'],context['is_consumed']
 	except ObjectDoesNotExist:
 		raise Http404
 
@@ -78,7 +89,7 @@ def daily_meals(request):
 	current_diet = Diet.objects.get(diet_name=diet)
 
 	now = timezone.now()
-	obj, created = UserDailyMeals.objects.get_or_create(user= pk_user, defaults={'date': now})
+	obj, created = UserDailyMeals.objects.get_or_create(user=pk_user, defaults={'date': now})
 	# check if the
 	# previous = dt.datetime.now() - dt.timedelta(hours=100)
 	previous = obj.date

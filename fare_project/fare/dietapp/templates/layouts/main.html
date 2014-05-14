@@ -19,6 +19,7 @@
                         data-target="#navbar-collapse-01">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
+{#                        <a href="{% url 'meals' %}"><span class="navbar-brand glyphicon glyphicon-home"></span></a>#}
                         <span class="navbar-brand" style="color: white;">
                             {% if user.is_authenticated %}
                                 {{ user.username }}

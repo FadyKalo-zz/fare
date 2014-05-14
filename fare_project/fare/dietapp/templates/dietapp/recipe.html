@@ -5,10 +5,10 @@
     <div id="recipe" class='row recipe' data-recid="{{ id }}">
         <div class='col-xs-12'>
             <div class="row pad-top-20">
-                <div class="col-xs-4 pad-left-25">
+                <div class="col-xs-4 pad-left-25 pad-top-20">
                     <img class="img-circle recipe-img" src="{{ images }}">
                 </div>
-                <div class="col-xs-8 pad-left-30">
+                <div class="col-xs-8 pad-left-30 ">
                     <div class="recipe-name">
                         <h4>{{ name }}</h4>
                     </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="row pad-top-20">
-                <div class="col-xs-4 pad-left-25">
+                <div class="col-xs-6">
                     <div class="rating text-center">
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
@@ -29,14 +29,18 @@
                         <span class="glyphicon glyphicon-star-empty"></span>
                     </div>
                 </div>
-                <div class="col-xs-8">
+                <div class="col-xs-6">
                     <div class="btn-group btn-group-xs pull-right">
                         <a class="btn btn-primary" href="#">
                             <span class="fui-time"></span>
                             <span class="time-value">{{ time }}</span>
                         </a>
                         <a id="done" class="btn btn-primary" href="#"><span class="fui-check"></span></a>
-                        <a id="like" class="btn btn-primary" href="#"><span class="fui-heart"></span></a>
+                        {% if is_liked %}
+                            <a id="like" class="btn btn-primary active" href="#"><span class="fui-heart"></span></a>
+                        {% else %}
+                            <a id="like" class="btn btn-primary" href="#"><span class="fui-heart"></span></a>
+                        {% endif %}
                         {#                        <a class="btn btn-primary" href="#"><span class="fui-eye"></span></a>#}
                     </div>
                 </div>
@@ -58,7 +62,7 @@
             <h4>Flavours</h4>
             {% for flav,value in flavors.items %}
                 <div class="row">
-                    <div class="col-xs-8">
+                    <div class="col-xs-10">
                         <div class="progress-label">
                             {{ flav }}
                         </div>
@@ -75,8 +79,8 @@
             <h4>Nutrition Facts</h4>
             {% for el in nutrition %}
                 <div class="row">
-                    <div class="col-xs-6">{{ el.description }}</div>
-                    <div class="col-xs-3">{{ el.value }} {{ el.unit }}</div>
+                    <div class="col-xs-7">{{ el.description }}</div>
+                    <div class="col-xs-5">{{ el.value }} {{ el.unit }}</div>
                 </div>
             {% endfor %}
 
